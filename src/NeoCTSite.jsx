@@ -1,22 +1,13 @@
 import React, { useState } from "react";
 
 /**
- * NEO CONSTRUCTION ET TRAVAUX — Site vitrine (One‑Page)
- * Framework: React + Tailwind (v4 ok)
+ * NEO CONSTRUCTION ET TRAVAUX — Site vitrine (One-Page)
+ * React + Tailwind
  * Sections: Accueil, À propos, Réalisations, Services, Équipe, Contact
  * NOTE: Pas de section "Projets en cours & à venir".
  */
 
 // ----------------------- Données du site -----------------------
-const NAV = [
-  { id: "accueil", label: "Accueil" },
-  { id: "apropos", label: "À propos" },
-  { id: "realisations", label: "Réalisations" },
-  { id: "services", label: "Services" },
-  { id: "equipe", label: "Équipe" },
-  { id: "contact", label: "Contact" },
-];
-
 const COMPANY = {
   name: "NEO Construction & Travaux",
   address: "Cocody 7e Tranche, Les Oscars — Abidjan, Côte d’Ivoire",
@@ -26,28 +17,15 @@ const COMPANY = {
   hours: "Lun–Ven 08h–18h",
 };
 
-const STAT_ITEMS = [
-  { label: "Année de création", value: "2016" },
-  { label: "Chiffre d'affaires", value: "489 M FCFA" },
-  { label: "Chantiers livrés", value: "30+" },
-  { label: "Équipe", value: "12 permanents + 50 saisonniers" },
-];
-
 const REALISATIONS = [
-  { title: "Villa Duplex - R+1", desc: "Villa Duplex - 2Plateux Les perles", tag: "Résidentiel", img: "/realisations/villa-perles.jpg" },
-  { title: "École des talents — Ahoué", desc: "Ouvrage public éducatif.", tag: "Institutionnel", img: "/realisations/ecole-talents.jpg" },
-  { title: "Pont bascule & plateforme d'agglos", desc: "Ouvrages techniques et industriels.", tag: "Industriel", img: "/realisations/pont-bascule-plateforme.jpg" },
-  { title: "Borea 1", desc: "Carrelage 15 villas duplex 5 pièces + guérite d’entrée.", tag: "Finition", img: "/realisations/borea1.jpg" },
-  { title: "Siège BNI (Plateau)", desc: "Carrelage zone B — chantier tertiaire.", tag: "Tertiaire", img: "/realisations/bni-siege.jpg" },
-  { title: "Borefle", desc: "11 villas duplex 5 pièces.", tag: "Résidentiel", img: "/realisations/borefle.jpg" },
-  { title: "Athessa 1", desc: "Immeuble R+3.", tag: "Résidentiel collectif", img: "/realisations/athessa1.jpg" },
-  { title: "Saint Viateur", desc: "Immeuble R+2 (11 pièces + garage).", tag: "Résidentiel collectif", img: "/realisations/saint-viateur.jpg" },
-];
-
-const SERVICES = [
-  { title: "Construction clé en main", desc: "De l’étude à la livraison : gros œuvre, second œuvre, coordination et contrôle qualité." },
-  { title: "Fourniture & Pose", desc: "Carrelage, menuiserie, plomberie, électricité et finitions haut de gamme." },
-  { title: "Travaux de main‑d’œuvre", desc: "Équipes qualifiées et encadrement pour interventions ciblées ou renforts de chantier." },
+  { title: "Villa Duplex - R+1", img: "/realisations/villa-perles.jpg" },
+  { title: "École des talents — Ahoué", img: "/realisations/ecole-talents.jpg" },
+  { title: "Pont bascule & plateforme d'agglos", img: "/realisations/pont-bascule-plateforme.jpg" },
+  { title: "Borea 1", img: "/realisations/borea1.jpg" },
+  { title: "Siège BNI (Plateau)", img: "/realisations/bni-siege.jpg" },
+  { title: "Borefle", img: "/realisations/borefle.jpg" },
+  { title: "Athessa 1", img: "/realisations/athessa1.jpg" },
+  { title: "Saint Viateur", img: "/realisations/saint-viateur.jpg" },
 ];
 
 // ----------------------- Composants UI -----------------------
@@ -62,13 +40,6 @@ const TeamCard = ({ name, role, bio }) => (
   </div>
 );
 
-const Stat = ({ label, value }) => (
-  <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-    <div className="text-2xl font-bold text-slate-900">{value}</div>
-    <div className="mt-1 text-xs uppercase tracking-wide text-slate-500">{label}</div>
-  </div>
-);
-
 const SectionTitle = ({ kicker, title, subtitle }) => (
   <div className="mx-auto max-w-3xl text-center">
     {kicker && <div className="text-xs font-semibold uppercase tracking-wide text-blue-600">{kicker}</div>}
@@ -77,69 +48,105 @@ const SectionTitle = ({ kicker, title, subtitle }) => (
   </div>
 );
 
+// ----------------------- Header -----------------------
 const Header = () => {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="#accueil" className="flex items-center gap-2">
-          <img src="/logo-neoct.jpg" alt="NEO Construction & Travaux" className="h-24 md:h-28 w-auto object-contain" />
-          <span className="sr-only">NEO Construction & Travaux</span>
-        </a>
-        <nav className="hidden md:flex items-center gap-6 text-sm text-slate-700">
-          {NAV.map((n) => (
-            <a key={n.id} href={`#${n.id}`} className="hover:text-blue-600">{n.label}</a>
-          ))}
-          <a href="#contact" className="rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700">Devis</a>
-        </nav>
-        <button aria-label="Ouvrir le menu" className="md:hidden rounded-lg border px-3 py-2 text-slate-700" onClick={() => setOpen(!open)}>
-          Menu
-        </button>
-      </div>
-      {open && (
-        <div className="md:hidden border-t bg-white">
-          <nav className="mx-auto max-w-6xl px-4 py-3 flex flex-col gap-3 text-sm text-slate-700">
-            {NAV.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="py-1" onClick={() => setOpen(false)}>{n.label}</a>
-            ))}
-            <a href="#contact" className="rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white w-max" onClick={() => setOpen(false)}>Demander un devis</a>
+    <header className="sticky top-0 z-40 w-full border-b bg-white/90 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="flex items-center justify-between py-3">
+          {/* Logo seul, aligné à gauche */}
+          <a href="#accueil" className="flex items-center">
+            <img
+              src="/logo-neoct.jpg"
+              alt="NEO Construction & Travaux"
+              className="h-16 md:h-20 w-auto select-none"
+              draggable="false"
+            />
+          </a>
+
+          {/* Menu à droite — sans le bouton “Devis” */}
+          <nav className="hidden md:flex items-center gap-7 text-base">
+            <a href="#accueil"      className="font-semibold text-slate-700 hover:text-slate-900">Accueil</a>
+            <a href="#apropos"      className="font-semibold text-slate-700 hover:text-slate-900">À propos</a>
+            <a href="#realisations" className="font-semibold text-slate-700 hover:text-slate-900">Réalisations</a>
+            <a href="#services"     className="font-semibold text-slate-700 hover:text-slate-900">Services</a>
+            <a href="#equipe"       className="font-semibold text-slate-700 hover:text-slate-900">Équipe</a>
+            <a href="#contact"      className="font-semibold text-slate-700 hover:text-slate-900">Contact</a>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
 
+// ----------------------- Accueil -----------------------
 const Hero = () => (
-  <section id="accueil" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-slate-50 to-white">
-    <div className="mx-auto max-w-6xl px-4 py-20 sm:py-28">
-      <div className="grid items-center gap-8 md:grid-cols-12">
+  <section
+    id="accueil"
+    className="relative bg-gradient-to-br from-blue-50 via-slate-50 to-white scroll-mt-28 mt-3"
+  >
+    <div className="mx-auto max-w-7xl px-4 pt-3 pb-8">
+      <div className="grid items-center gap-6 md:grid-cols-12">
+        {/* TEXTE */}
         <div className="md:col-span-5">
-          <div className="text-xs font-semibold uppercase tracking-wider text-blue-600">NEO Construction & Travaux</div>
-          <h1 className="mt-2 text-xl sm:text-2xl md:text-4xl font-extrabold leading-snug text-slate-900">
-            Des professionnels pour transformer vos projets en réalisations durables
+          <h1 className="mt-1 text-xl sm:text-2xl font-bold leading-tight text-slate-700">
+            Vos projets méritent l’excellence. Construisons ensemble vos ambitions
           </h1>
-          <p className="mt-3 text-slate-600 text-base md:text-lg">
-            Entreprise basée à Cocody 7e Tranche (Les Oscars), NEO CT conçoit et
-            realise des ouvrages résidentiels, tertiaires et industriels dans les regles de l'art.
+          <p className="mt-3 text-slate-600">
+            Chez NEO CONSTRUCTION ET TRAVAUX, chaque projet est une histoire de passion, de précision et d’engagement.
+            De la villa moderne au bâtiment industriel, nous transformons vos idées en réalisations solides, élégantes et durables.
+            Innovation, Qualité et Confiance sont les fondations de notre savoir-faire.
+            Avec NEO CT, votre vision prend forme, brique après brique, avec exigence et fierté.
+            <br />
+            Cocody II-Plateaux, 7ᵉ Tranche – Les Oscars
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#contact" className="inline-flex items-center justify-center rounded-xl border border-transparent bg-blue-600 px-5 py-3 text-white font-semibold shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600/30">
-              Demander un devis
+
+          <div className="mt-5 flex gap-3">
+            <a
+              href={`https://wa.me/${COMPANY.whatsapp}?text=Bonjour%20NEO%20CT%2C%20je%20souhaite%20un%20devis`}
+              className="inline-flex items-center rounded-xl bg-green-600 px-4 py-2 text-white shadow-md hover:bg-green-700"
+            >
+              Demander un devis WhatsApp
             </a>
-            <a href="#realisations" className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-slate-700 font-semibold shadow-sm hover:bg-slate-50">
+            <a
+              href="#realisations"
+              className="inline-flex items-center rounded-xl border border-slate-300 px-4 py-2 text-slate-700 hover:bg-slate-50"
+            >
               Voir nos réalisations
             </a>
           </div>
         </div>
-        <div className="relative md:col-span-7">
-          <div
-            className="aspect-[16/10] w-full rounded-3xl bg-cover bg-center shadow-xl"
-            style={{ backgroundImage: `url('/hero-neoct.jpg')` }}
-          />
-          <div className="absolute -right-6 -bottom-6 hidden sm:block rounded-2xl border border-slate-200 bg-white/90 p-4 backdrop-blur shadow">
-            <div className="text-xs text-slate-500">Qualité • Délais • Sécurité</div>
-            <div className="text-sm font-semibold text-slate-800">Engagement chantier</div>
+
+        {/* IMAGE — hauteur limitée + cadrage propre */}
+        <div className="md:col-span-7">
+          <div className="w-full max-w-[680px] overflow-hidden rounded-3xl shadow-xl">
+            {/* Choisis l’une des 2 lignes ci-dessous */}
+
+            {/* Option A: hauteur fixe (compact) */}
+            <img
+              src="/hero-neoct.jpg"
+              alt="Chantier NEO CT"
+              className="h-64 sm:h-72 md:h-80 w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+
+            {/* Option B: ratio fixe (désactive l’option A si tu prends celle-ci)
+            <div className="aspect-[16/9]">
+              <img
+                src="/hero-neoct.jpg"
+                alt="Chantier NEO CT"
+                className="h-full w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            */}
+          </div>
+
+          <div className="mt-3 rounded-xl bg-white/70 px-4 py-2 text-sm text-slate-700 shadow">
+            Qualité • Délais • Sécurité — Engagement chantier
           </div>
         </div>
       </div>
@@ -147,74 +154,125 @@ const Hero = () => (
   </section>
 );
 
+
+// ----------------------- À propos -----------------------
+// ————— À PROPOS —————
 const Apropos = () => (
-  <section id="apropos" className="bg-white">
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-      <SectionTitle
-        kicker="À propos"
-        title="Bâtir durablement, servir avec exigence"
-        subtitle="NEO CT est une SARL ivoirienne spécialisée en BTP depuis 2016. Nous intervenons sur des villas, immeubles, bureaux et ouvrages techniques, avec une chaîne de valeur complète : études, gros œuvre, second œuvre et finitions."
-      />
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {STAT_ITEMS.map((s) => (
-          <Stat key={s.label} label={s.label} value={s.value} />
-        ))}
-      </div>
-    </div>
-  </section>
-);
+  <section id="apropos" className="bg-white scroll-mt-28">
+    <div className="mx-auto max-w-6xl px-4 py-10">
+      <div className="grid items-start gap-6 md:gap-8 md:grid-cols-12">
 
-const Realisations = () => (
-  <section id="realisations" className="bg-slate-50">
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-      <SectionTitle
-        kicker="Réalisations"
-        title="Des chantiers livrés avec soin"
-        subtitle="Une sélection de projets représentatifs. Photos et détails pourront être ajoutés au fur et à mesure."
-      />
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {REALISATIONS.map((r) => (
-          <article key={r.title} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <div
-              className="aspect-[4/3] w-full bg-slate-100 group-hover:opacity-95 transition bg-cover bg-center"
-              style={{ backgroundImage: `url(${r.img})` }}
+        {/* Photo (colonne gauche) */}
+        <div className="md:col-span-4">
+          {/* Wrapper pour limiter largeur + hauteur et garder un joli cadrage */}
+          <div className="mx-auto w-full max-w-[300px] overflow-hidden rounded-2xl shadow">
+            <img
+              src="/Gui Alain BAHIBO.jpg"
+              alt="Gui Alain BAHIBO — Directeur Général de NEO Construction & Travaux"
+              className="h-72 sm:h-80 md:h-[22rem] w-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
-            <div className="p-5">
-              <div className="text-xs font-medium text-blue-600">{r.tag}</div>
-              <h3 className="mt-1 text-lg font-semibold text-slate-900">{r.title}</h3>
-              <p className="mt-1 text-sm text-slate-600">{r.desc}</p>
+          </div>
+        </div>
+
+        {/* Texte (colonne droite) */}
+        <div className="md:col-span-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
+            Mot du Directeur Général
+          </h2>
+
+          <p className="mt-3 text-slate-700 leading-relaxed">
+            Nous avons créé NEO CONSTRUCTION ET TRAVAUX (NEO CT) avec une conviction simple :
+            offrir une approche nouvelle de la construction, fondée sur la rigueur, la transparence
+            et la passion du travail bien fait. Depuis 2019, nous accompagnons nos clients dans la
+            réalisation de projets ambitieux, en alliant innovation, exigence et respect des
+            engagements.
+          </p>
+
+          <p className="mt-4 text-slate-700 leading-relaxed">
+            Notre croissance repose sur des professionnels dévoués, unis par la même exigence du
+            travail bien fait et le respect des valeurs&nbsp;: intégrité, professionnalisme et
+            engagement envers nos clients.
+          </p>
+
+          <p className="mt-4 text-slate-700 leading-relaxed">
+            Notre ambition est claire&nbsp;: devenir une référence nationale dans la construction
+            et les travaux publics, en plaçant toujours l’humain, la performance et la satisfaction
+            client au cœur de nos priorités.
+          </p>
+
+          <p className="mt-4 text-slate-700 leading-relaxed">
+            Bâtir avec exigence, livrer avec fierté, réussir ensemble — telle est notre vision.
+          </p>
+
+          <div className="mt-6">
+            <div className="text-slate-800">Gui Alain BAHIBO – Directeur Général</div>
+            <div className="font-semibold text-slate-900">
+              NEO CONSTRUCTION ET TRAVAUX
             </div>
-          </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+// ----------------------- Réalisations -----------------------
+const Realisations = () => (
+  <section id="realisations" className="bg-slate-50 scroll-mt-28">
+    <div className="mx-auto max-w-7xl px-4 py-12">
+      <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Réalisations</h2>
+      <p className="mt-2 text-slate-600">Quelques chantiers livrés par nos équipes.</p>
+
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { title: "Borefle", img: "/realisations/borefle.jpg" },
+          { title: "Villa Perles", img: "/realisations/villa-perles.jpg" },
+          // ajoute ici tes autres images…
+        ].map((r) => (
+          <figure key={r.title} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+            <img
+              src={r.img}
+              alt={r.title}
+              width="1200" height="800"
+              className="h-44 w-full object-cover rounded-t-2xl"
+              loading="lazy" decoding="async"
+            />
+            <figcaption className="px-4 py-3 text-slate-800">{r.title}</figcaption>
+          </figure>
         ))}
       </div>
     </div>
   </section>
 );
 
+// ----------------------- Services -----------------------
 const ServicesSection = () => (
-  <section id="services" className="bg-white">
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-      <SectionTitle kicker="Services" title="Nos domaines d’intervention" subtitle="Des offres adaptées à la nature de votre projet et à vos délais." />
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
-        {SERVICES.map((s) => (
-          <div key={s.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-700 font-bold">✓</div>
-            <h3 className="mt-4 text-lg font-semibold text-slate-900">{s.title}</h3>
-            <p className="mt-2 text-sm text-slate-600 leading-relaxed">{s.desc}</p>
+  <section id="services" className="bg-white scroll-mt-28">
+    <div className="mx-auto max-w-7xl px-4 py-12">
+      <h2 className="text-xl sm:text-2xl font-bold text-slate-900">Nos services</h2>
+      <p className="mt-2 text-slate-600">Études, exécution, finitions — clé en main.</p>
+
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { t: "Gros œuvre", d: "Fondations, voiles, dalles, structures en béton armé." },
+          { t: "Second œuvre", d: "Maçonnerie, cloisonnement, électricité, plomberie." },
+          { t: "Finitions", d: "Carrelage, peinture, menuiserie, étanchéité, façades." }
+        ].map((s) => (
+          <div key={s.t} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-slate-900">{s.t}</h3>
+            <p className="mt-2 text-slate-600">{s.d}</p>
           </div>
         ))}
       </div>
-      <div className="mt-8 rounded-2xl border border-blue-200 bg-blue-50 p-6 text-blue-900">
-        <p className="text-sm">
-          Besoin d’un devis détaillé (plans, quantitatifs, délais) ? Contactez‑nous via le formulaire ci‑dessous ou par WhatsApp.
-        </p>
-      </div>
     </div>
   </section>
 );
 
+// ----------------------- Équipe -----------------------
 const Equipe = () => (
-  <section id="equipe" className="bg-slate-50">
+  <section id="equipe" className="bg-slate-50 scroll-mt-28">
     <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
       <SectionTitle kicker="Équipe" title="Des professionnels engagés" subtitle="Encadrement expérimenté et équipes opérationnelles qualifiées." />
       <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -226,8 +284,9 @@ const Equipe = () => (
   </section>
 );
 
+// ----------------------- Contact -----------------------
 const Contact = () => (
-  <section id="contact" className="bg-white">
+  <section id="contact" className="bg-white scroll-mt-28">
     <div className="mx-auto max-w-6xl px-4 py-16 sm:py-20">
       <SectionTitle kicker="Contact" title="Parlons de votre projet" subtitle="Réponse sous 24–48h ouvrées. Nous pouvons aussi organiser une visite technique sur site." />
       <div className="mt-10 grid gap-8 md:grid-cols-2">
@@ -243,7 +302,7 @@ const Contact = () => (
             href={`mailto:${COMPANY.email}?subject=Demande%20de%20devis%20NEO%20CT`}
             className="mt-5 inline-flex rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
           >
-            Écrire un e‑mail
+            Écrire un e-mail
           </a>
           {COMPANY.whatsapp && (
             <a
@@ -289,6 +348,7 @@ const Contact = () => (
   </section>
 );
 
+// ----------------------- Footer -----------------------
 const Footer = () => (
   <footer className="border-t bg-white">
     <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between gap-3">

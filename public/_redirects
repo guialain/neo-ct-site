@@ -1,0 +1,8 @@
+# Force HTTPS (si quelqu'un tape http)
+http://* https://*:splat 301
+
+# Redirige tout l'apex vers www (avec chemin & query)
+https://neoct.ci/*  https://www.neoct.ci/:splat  301!
+
+# Fallback SPA (React/Vite) pour éviter les 404 sur rafraîchissement
+/*  /index.html  200
