@@ -4,10 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5174",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0 --port 5199",
-    "deploy": "git add -A && (git commit -m \"chore: deploy\" || echo No changes) && git push origin main"
+    "deploy": "git add -A && (git commit -m \"chore: deploy\" || echo No changes) && git push origin main",
+    "deploy:build": "npm run build && npm run deploy",
+    "deploy:quick": "npm run deploy",
+    "start": "npm run preview"
   },
   "dependencies": {
     "react": "^18.3.1",
