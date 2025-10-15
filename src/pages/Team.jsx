@@ -1,45 +1,47 @@
 import React from "react";
 
 /**
- * Photos à placer dans: public/team/
- * - bahibo.jpg
- * - guiro.jpg
- * - guilahou.jpg
- * - zouho.jpg
+ * Les photos sont à la racine de /public :
+ * - Ben Alvine GUIRO.jpg
+ * - Gui Alain BAHIBO.jpg
+ * - Marcel Olivier GUILAHOU.jpg
+ * - (ajoute la photo de ZOUHO si tu l’as)
+ * Les espaces sont encodés (%20) pour éviter tout souci d’URL.
  */
 
 const TEAM = [
   {
-    id: "zouho",
-    name: "Mea Armond ZOUHO",
-    role: "Responsable comptable & financier",
-    photo: "/team/zouho.jpg",
+    id: "bahibo",
+    name: "Gui Alain BAHIBO",
+    role: "Directeur Général – Fondateur",
+    photo: "/Gui%20Alain%20BAHIBO.jpg",
     summary:
-      "Supervision comptable et financière : budgets, trésorerie, reporting, conformité et optimisation des coûts sur l’ensemble des chantiers.",
+      "Vision et gouvernance : stratégie, management des opérations, sécurité, excellence opérationnelle et culture du résultat.",
+  },
+  {
+    id: "guiro",
+    name: "Ben Alvine GUIRO",
+    role: "Directeur Projets, DG BAHIBO & CO",
+    photo: "/Ben%20Alvine%20GUIRO.jpg",
+    summary:
+      "Direction des projets : études d’exécution, coordination TCE, suivi qualité/coûts/délais, livraisons et satisfaction client.",
   },
   {
     id: "guilahou",
     name: "Marcel Olivier GUILAHOU",
     role: "Directeur Développement Commercial",
-    photo: "/team/guilahou.jpg",
+    photo: "/Marcel%20Olivier%20GUILAHOU.jpg",
     summary:
       "Pilotage du développement commercial : prospection, relation clients, appels d’offres, partenariats et croissance du portefeuille.",
   },
   {
-    id: "guiro",
-    name: "Ben Alvine GUIRO",
-    role: "Directeur Projets",
-    photo: "/team/guiro.jpg",
+    id: "zouho",
+    name: "Mea Armond ZOUHO",
+    role: "Responsable comptable & financier",
+    // Mets le bon nom de fichier si tu ajoutes la photo :
+    photo: "/Mea%20Armond%20ZOUHO.jpg",
     summary:
-      "Direction des projets : études d’exécution, coordination TCE, suivi qualité/coûts/délais, livraisons et satisfaction client.",
-  },
-  {
-    id: "bahibo",
-    name: "Gui Alain BAHIBO",
-    role: "Directeur Général – Fondateur",
-    photo: "/team/bahibo.jpg",
-    summary:
-      "Vision et gouvernance : stratégie, management des opérations, sécurité, excellence opérationnelle et culture du résultat.",
+      "Supervision comptable et financière : budgets, trésorerie, reporting, conformité et optimisation des coûts sur l’ensemble des chantiers.",
   },
 ];
 
