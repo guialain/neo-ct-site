@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* === Partners Carousel (Accueil) ======================================= */
+@keyframes partners-scroll-x {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* on duplique la liste -> -50% */
+}
+.partners-marquee {
+  animation: partners-scroll-x 28s linear infinite;
+  will-change: transform;
+}
+.partners-marquee:hover {
+  animation-play-state: paused; /* pause au survol */
+}
