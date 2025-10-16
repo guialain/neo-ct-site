@@ -10,14 +10,14 @@ export const partnersList = [
 
   // Noms normalisés (tu pourras ajouter les logos plus tard)
   { name: "BANQUE ATLANTIQUE",             logo: null, initials: "BA" },
-  { name: "PIVOT INGENIERIE",              logo: null, initials: "PI" },
+  { name: "PIVOT INGENIERIE",              logo: "/Partners/pivot-ingenierie.png" },
   { name: "SOTACI",                        logo: null, initials: "S" },
   { name: "BERNABE",                       logo: null, initials: "B" },
   { name: "SEIGNEURIE",                    logo: null, initials: "S" },
-  { name: "DELUXE MARBRE",                 logo: null, initials: "DM" },
-  { name: "ABEILLE BETON",                 logo: null, initials: "AB" },
+  { name: "DELUXE MARBRE",                 logo: "/Partners/deluxe-marbre.png" },
+  { name: "AFRIK BETON",                 logo:  "/Partners/afrik-beton.png" },
   { name: "SIBM",                          logo: null, initials: "S" },
-  { name: "PSTACI",                        logo: null, initials: "P" },
+  { name: "PSTACI",                        logo: "/Partners/pstaci.png" },
   { name: "BIG CIM",                       logo: null, initials: "BC" },
 ];
 
