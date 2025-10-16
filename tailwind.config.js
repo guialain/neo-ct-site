@@ -1,6 +1,8 @@
-/** @type {import('tailwindcss').Config} */
+// ESM
 export default {
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
-  theme: { extend: {} },
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
   plugins: [],
 };
