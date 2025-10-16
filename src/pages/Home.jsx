@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PartnersCarousel } from "../components/Partners"; // ajuste le chemin si besoin
+import { PartnersCarousel } from "../components/Partners";
 
 const COMPANY = {
   whatsapp: "225XXXXXXXXX",
