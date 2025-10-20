@@ -1,117 +1,94 @@
-// src/components/Partners.jsx
+// src/pages/Home.jsx
 import React from "react";
+import HeroCarousel from "../components/HeroCarousel";
+import PartnersCarousel from "../components/PartnersCarousel";
 
-/** Liste fixe de 10 partenaires (tous avec logo) */
-const PARTNERS = [
-  { name: "AFRIK BETON",            logo: "/Partners/afrik-beton.png" },
-  { name: "ARTEMIS CT (GROUPE KAYDAN)", logo: "/Partners/artemis-ct-kaydan.png" },
-  { name: "BANQUE ATLANTIQUE",      logo: "/Partners/banque-atlantique.png" },
-  { name: "BERNABE",                logo: "/Partners/bernabe.png" },
-  { name: "DELUXE MARBRE",          logo: "/Partners/deluxe-marbre.png" },
-  { name: "IPS-CGRAE",              logo: "/Partners/ips-cgrae.png" },
-  { name: "PIVOT INGENIERIE",       logo: "/Partners/pivot-ingenierie.png" },
-  { name: "PSTACI",                 logo: "/Partners/pstaci.png" },
-  { name: "SOCIETE GENERALE",       logo: "/Partners/societe-generale.png" },
-  { name: "BIG CIM",                logo: "/Partners/big-cim.png" },
-];
-
-function PartnerCard({ name, logo }) {
-  return (
-    <div className="w-[220px] shrink-0">
-      <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm">
-        <div className="flex h-16 items-center justify-center">
-          <img
-            src={logo}
-            alt={name}
-            className="max-h-14 w-auto object-contain"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-        <div className="mt-3 text-center text-xs font-medium text-slate-700 line-clamp-2">
-          {name}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* -------- Carrousel auto (Accueil) -------- */
-function PartnersCarousel({
-  title = "Ils nous font confiance",
-  subtitle = "Un aperçu de nos partenaires — défilement automatique.",
-}) {
-  const track = [...PARTNERS, ...PARTNERS]; // duplication simple pour effet infini
+export default function Home() {
+  // 7 médias (images/vidéos) — adapte les chemins à ce que tu as dans /public/media/hero/
+  const MEDIA = [
+    { type: "image", src: "/media/hero/equipe-neoct.jpg", alt: "Équipe NEO CT" },
+    { type: "video", src: "/media/hero/chantier-1_720p.mp4", poster: "/media/hero/chantier-1.jpg", alt: "Coulage sur chantier" },
+    { type: "image", src: "/media/hero/facade-perles-1.jpg", alt: "Façade Villa Perles" },
+    { type: "image", src: "/media/hero/site-equipement.jpg", alt: "Équipements de chantier" },
+    { type: "video", src: "/media/hero/inspection_720p.mp4", poster: "/media/hero/inspection.jpg", alt: "Inspection" },
+    { type: "image", src: "/media/hero/equipe-chantier-2.jpg", alt: "Équipe sur site" },
+    { type: "image", src: "/media/hero/finition-interieur.jpg", alt: "Finitions intérieures" },
+  ];
 
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-16">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">{title}</h2>
-        <p className="mt-2 text-slate-600">{subtitle}</p>
-      </div>
+    <main className="bg-gradient-to-br from-blue-50 via-slate-50 to-white">
+      {/* Héros : texte + carousel */}
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:py-14 grid gap-8 md:grid-cols-12 items-center">
+        {/* Colonne texte */}
+        <div className="md:col-span-5 lg:col-span-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-blue-700">
+            Neo Construction & Travaux
+          </p>
+          <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+            Exigence, sécurité, résultat.
+          </h1>
+          <p className="mt-3 text-slate-600">
+            Du plan à la remise des clés : résidentiel, tertiaire et industriel, réalisés dans les règles de l’art.
+          </p>
 
-      <div className="relative overflow-hidden">
-        <div
-          className="flex gap-5 will-change-transform"
-          style={{
-            animation: "partners-scroll 35s linear infinite",
-            width: `${track.length * 236}px`,
-          }}
-        >
-          {track.map((p, idx) => (
-            <PartnerCard key={`${p.name}-${idx}`} name={p.name} logo={p.logo} />
-          ))}
-        </div>
-
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white to-transparent" />
-      </div>
-
-      <style>{`
-        @keyframes partners-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-    </section>
-  );
-}
-
-/* -------- Grille statique (À propos) -------- */
-function PartnersGrid({
-  title = "Ils nous font confiance",
-  subtitle = "Partenaires, clients et institutions qui soutiennent nos projets.",
-}) {
-  return (
-    <section className="mx-auto max-w-7xl px-4 pb-16">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">{title}</h2>
-        <p className="mt-2 text-slate-600">{subtitle}</p>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {PARTNERS.map((p) => (
-          <div key={p.name} className="w-full">
-            <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm">
-              <div className="flex h-16 items-center justify-center">
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="max-h-14 w-auto object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="mt-3 text-center text-xs font-medium text-slate-700 line-clamp-2">
-                {p.name}
-              </div>
-            </div>
+          <div className="mt-5 flex flex-wrap items-center gap-2 text-sm">
+            <span className="inline-flex items-center rounded-full bg-white px-3 py-1 shadow ring-1 ring-slate-200">Qualité</span>
+            <span className="inline-flex items-center rounded-full bg-white px-3 py-1 shadow ring-1 ring-slate-200">Délais</span>
+            <span className="inline-flex items-center rounded-full bg-white px-3 py-1 shadow ring-1 ring-slate-200">Sécurité</span>
           </div>
-        ))}
-      </div>
-    </section>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href="/contact" className="px-4 py-2 rounded-lg bg-slate-900 text-white font-medium hover:bg-slate-800">
+              Demander un devis
+            </a>
+            <a href="/realisations" className="px-4 py-2 rounded-lg border border-slate-300 font-medium hover:bg-slate-100">
+              Voir nos réalisations
+            </a>
+          </div>
+        </div>
+
+        {/* Colonne carousel */}
+        <div className="md:col-span-7 lg:col-span-8">
+          <HeroCarousel items={MEDIA} autoPlay={true} interval={5000} />
+        </div>
+      </section>
+
+      {/* Bande de confiance */}
+      <section className="border-t border-slate-200 bg-white/60">
+        <div className="mx-auto max-w-7xl px-4 py-8 grid gap-6 sm:grid-cols-3">
+          <div>
+            <h3 className="text-slate-900 font-semibold">Sécurité & conformité</h3>
+            <p className="text-sm text-slate-600 mt-1">Procédures HSE intégrées, contrôle qualité et réception sans surprise.</p>
+          </div>
+          <div>
+            <h3 className="text-slate-900 font-semibold">Maîtrise des coûts</h3>
+            <p className="text-sm text-slate-600 mt-1">Chiffrages transparents, suivi budgétaire et optimisation des achats.</p>
+          </div>
+          <div>
+            <h3 className="text-slate-900 font-semibold">Respect des délais</h3>
+            <p className="text-sm text-slate-600 mt-1">Planning réaliste, coordination multi-lots et pilotage terrain.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Partenaires (carrousel auto depuis src/components/PartnersCarousel.jsx) */}
+      <PartnersCarousel
+        title="Ils nous font confiance"
+        subtitle="Un aperçu de nos partenaires — défilement automatique."
+      />
+
+      {/* CTA final */}
+      <section className="mx-auto max-w-7xl px-4 py-10">
+        <div className="rounded-2xl bg-slate-900 text-white p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h3 className="text-xl font-semibold">Parlons de votre projet</h3>
+            <p className="text-sm/6 text-white/80 mt-1">Envoyez vos plans ou votre idée : nous vous répondons rapidement.</p>
+          </div>
+          <a href="/contact" className="px-4 py-2 rounded-lg bg-white text-slate-900 font-medium hover:bg-slate-100">
+            Contact
+          </a>
+        </div>
+      </section>
+    </main>
   );
 }
-
-export default PartnersCarousel;
-export { PartnersCarousel, PartnersGrid };

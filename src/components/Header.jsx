@@ -1,42 +1,24 @@
+// src/components/Header.jsx
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-white/90 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="flex items-center justify-between py-3">
-          {/* Logo à gauche */}
-          <Link to="/" className="flex items-start gap-3">
-            <img
-              src="/logo-neoct.jpg"
-              alt="NEO Construction & Travaux"
-              className="h-16 md:h-20 w-auto select-none"
-              draggable="false"
-            />
-          </Link>
+    <header className="border-b border-slate-200 bg-white/80 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-3">
+          <img src="/logo-neoct.jpg" alt="NEO CT" className="h-8 w-auto" />
+        </Link>
 
-          {/* Menu */}
-          <nav className="hidden md:flex items-center gap-7 text-[15px]">
-            <NavLink to="/" end className="font-medium text-slate-700 hover:text-slate-900">
-              Accueil
-            </NavLink>
-            <NavLink to="/apropos" className="font-medium text-slate-700 hover:text-slate-900">
-              À propos
-            </NavLink>
-            <NavLink to="/realisations" className="font-medium text-slate-700 hover:text-slate-900">
-              Réalisations
-            </NavLink>
-            <NavLink to="/services" className="font-medium text-slate-700 hover:text-slate-900">
-              Services
-            </NavLink>
-            <NavLink to="/equipe" className="font-medium text-slate-700 hover:text-slate-900">
-              Équipe
-            </NavLink>
-            <NavLink to="/contact" className="font-medium text-slate-700 hover:text-slate-900">
-              Contact
-            </NavLink>
-          </nav>
-        </div>
+        <nav className="flex gap-2 text-sm">
+          <NavLink to="/" end className={({isActive})=>`px-3 py-2 rounded ${isActive?"bg-slate-900 text-white":"hover:bg-slate-100"}`}>Accueil</NavLink>
+          {/* Utilise /apropos (sans accent) partout */}
+          <NavLink to="/apropos" className={({isActive})=>`px-3 py-2 rounded ${isActive?"bg-slate-900 text-white":"hover:bg-slate-100"}`}>À propos</NavLink>
+          <NavLink to="/realisations" className={({isActive})=>`px-3 py-2 rounded ${isActive?"bg-slate-900 text-white":"hover:bg-slate-100"}`}>Réalisations</NavLink>
+          <NavLink to="/services" className={({isActive})=>`px-3 py-2 rounded ${isActive?"bg-slate-900 text-white":"hover:bg-slate-100"}`}>Services</NavLink>
+          <NavLink to="/team" className={({isActive})=>`px-3 py-2 rounded ${isActive?"bg-slate-900 text-white":"hover:bg-slate-100"}`}>Équipe</NavLink>
+          <NavLink to="/contact" className={({isActive})=>`px-3 py-2 rounded ${isActive?"bg-slate-900 text-white":"hover:bg-slate-100"}`}>Contact</NavLink>
+        </nav>
       </div>
     </header>
   );

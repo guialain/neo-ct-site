@@ -1,39 +1,76 @@
 // src/components/PartnersCarousel.jsx
 import React from "react";
-import { partnersList } from "./Partners";
 
-const Item = ({ name, logo, initials }) => (
-  <div className="flex items-center justify-center min-w-[160px] h-[72px] rounded-xl border border-slate-200 bg-white px-4 mx-3 shadow-sm">
-    {logo ? (
-      <img src={logo} alt={name} className="h-10 w-auto object-contain" />
-    ) : (
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-slate-100 text-slate-700 font-semibold">
-        {initials || name[0]}
-      </span>
-    )}
-  </div>
-);
+/** Liste de partenaires (logos en /public/Partners/...) */
+const PARTNERS = [
+  { name: "AFRIK BETON",                 logo: "/Partners/afrik-beton.png" },
+  { name: "ARTEMIS CT (GROUPE KAYDAN)",  logo: "/Partners/artemis-ct-kaydan.png" },
+  { name: "BANQUE ATLANTIQUE",           logo: "/Partners/banque-atlantique.png" },
+  { name: "BERNABE",                     logo: "/Partners/bernabe.png" },
+  { name: "DELUXE MARBRE",               logo: "/Partners/deluxe-marbre.png" },
+  { name: "IPS-CGRAE",                   logo: "/Partners/ips-cgrae.png" },
+  { name: "PIVOT INGENIERIE",            logo: "/Partners/pivot-ingenierie.png" },
+  { name: "PSTACI",                      logo: "/Partners/pstaci.png" },
+  { name: "SOCIETE GENERALE",            logo: "/Partners/societe-generale.png" },
+  { name: "BIG CIM",                     logo: "/Partners/big-cim.png" },
+];
 
-export default function PartnersCarousel() {
-  // On duplique la liste pour l’animation “infinie”
-  const strip = [...partnersList.slice(0, 12), ...partnersList.slice(0, 12)];
-
+function PartnerCard({ name, logo }) {
   return (
-    <section className="py-12">
-      <h2 className="text-2xl md:text-3xl font-semibold text-center">
-        Ils nous font confiance
-      </h2>
-      <p className="text-center text-slate-500 mt-2 mb-6">
-        Un aperçu de nos partenaires — défilement automatique.
-      </p>
-
-      <div className="relative overflow-hidden">
-        <div className="partners-marquee flex items-center">
-          {strip.map((p, i) => (
-            <Item key={i} {...p} />
-          ))}
+    <div className="w-[220px] shrink-0">
+      <div className="rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm">
+        <div className="flex h-16 items-center justify-center">
+          <img
+            src={logo}
+            alt={name}
+            className="max-h-14 w-auto object-contain"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="mt-3 text-center text-xs font-medium text-slate-700 line-clamp-2">
+          {name}
         </div>
       </div>
+    </div>
+  );
+}
+
+export default function PartnersCarousel({
+  title = "Ils nous font confiance",
+  subtitle = "Un aperçu de nos partenaires — défilement automatique.",
+}) {
+  // duplication pour un effet de défilement infini
+  const track = [...PARTNERS, ...PARTNERS];
+
+  return (
+    <section className="mx-auto max-w-7xl px-4 pb-16">
+      <div className="text-center mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">{title}</h2>
+        <p className="mt-2 text-slate-600">{subtitle}</p>
+      </div>
+
+      <div className="relative overflow-hidden">
+        <div
+          className="flex gap-5 will-change-transform"
+          style={{ animation: "partners-scroll 35s linear infinite", width: `${track.length * 236}px` }}
+        >
+          {track.map((p, idx) => (
+            <PartnerCard key={`${p.name}-${idx}`} name={p.name} logo={p.logo} />
+          ))}
+        </div>
+
+        {/* dégradés de bord */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white to-transparent" />
+      </div>
+
+      <style>{`
+        @keyframes partners-scroll {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 }
