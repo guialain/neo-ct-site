@@ -53,12 +53,9 @@ export default function Home() {
         </div>
 
         {/* Carousel droite */}
-
-<div className="md:col-span-6 lg:col-span-7">
-      <HeroCarousel items={MEDIA} autoPlay interval={5000} />
-
-</div>
-
+        <div className="md:col-span-6 lg:col-span-7">
+          <HeroCarousel items={MEDIA} autoPlay interval={5000} />
+        </div>
       </section>
 
       {/* Bande de confiance */}
@@ -85,11 +82,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partenaires (carrousel auto) */}
-      <PartnersCarousel
-        title="Ils nous font confiance"
-        subtitle="Un aperçu de nos partenaires — défilement automatique."
-      />
+      {/* Partenaires (carrousel auto, sans sous-titre) */}
+      <PartnersCarousel title="Ils nous font confiance" />
 
       {/* CTA final */}
       <section className="mx-auto max-w-7xl px-4 py-10">

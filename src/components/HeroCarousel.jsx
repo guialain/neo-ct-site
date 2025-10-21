@@ -1,176 +1,133 @@
 // src/components/HeroCarousel.jsx
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-/* --- Icônes SVG inline (aucune lib externe) --- */
-const IconPrev = (props) => (
-  <svg viewBox="0 0 24 24" width="20" height="20" {...props}>
-    <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-  </svg>
-);
-const IconNext = (props) => (
-  <svg viewBox="0 0 24 24" width="20" height="20" {...props}>
-    <path fill="currentColor" d="m10 6 1.41 1.41L7.83 11H20v2H7.83l3.58 3.59L10 18l-6-6z"/>
-  </svg>
-);
-const IconPlay = (props) => (
-  <svg viewBox="0 0 24 24" width="14" height="14" {...props}>
-    <path fill="currentColor" d="M8 5v14l11-7z"/>
-  </svg>
-);
-const IconPause = (props) => (
-  <svg viewBox="0 0 24 24" width="14" height="14" {...props}>
-    <path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z"/>
-  </svg>
-);
-
-/**
- * items: [
- *  { type: "image", src: "/media/hero/pic.jpg", alt: "..." },
- *  { type: "video", src: "/media/hero/vid.mp4", poster: "/media/hero/vid.jpg", alt: "..." }
- * ]
- */
-export default function HeroCarousel({ items = [], autoPlay = true, interval = 5000 }) {
-  const [index, setIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+export default function HeroCarousel({
+  items = [],
+  autoPlay = true,
+  interval = 5000,
+}) {
+  const [i, setI] = useState(0);
   const timerRef = useRef(null);
-  const startX = useRef(0);
-  const deltaX = useRef(0);
   const count = items.length;
 
-  const go = useCallback(
-    (i) => {
-      if (!count) return;
-      setIndex(((i % count) + count) % count);
-    },
-    [count]
-  );
-  const next = useCallback(() => go(index + 1), [go, index]);
-  const prev = useCallback(() => go(index - 1), [go, index]);
+  const go = (n) => setI(((n % count) + count) % count);
+  const next = () => go(i + 1);
+  const prev = () => go(i - 1);
 
-  // Autoplay
+  // autoplay
   useEffect(() => {
-    if (!isPlaying || count <= 1) return;
-    timerRef.current && clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(next, interval);
-    return () => clearTimeout(timerRef.current);
-  }, [isPlaying, index, interval, next, count]);
-
-  // Clavier
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === " ") setIsPlaying((p) => !p);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [next, prev]);
-
-  // Swipe
-  const onTouchStart = (e) => { startX.current = e.touches[0].clientX; };
-  const onTouchMove  = (e) => { deltaX.current = e.touches[0].clientX - startX.current; };
-  const onTouchEnd   = () => {
-    if (Math.abs(deltaX.current) > 40) (deltaX.current < 0 ? next() : prev());
-    deltaX.current = 0;
-  };
-
-  // Pause au survol
-  const onMouseEnter = () => setIsPlaying(false);
-  const onMouseLeave = () => setIsPlaying(autoPlay);
+    if (!autoPlay || count <= 1) return;
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => next(), interval);
+    return () => clearInterval(timerRef.current);
+  }, [i, autoPlay, interval, count]);
 
   if (!count) return null;
-  const current = items[index];
 
   return (
-    <div className="relative w-full">
-      {/* Viewport */}
-      <div
-        className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-slate-200 bg-black"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-        aria-roledescription="carousel"
-        aria-label="Galerie d'images et vidéos"
-      >
-        <div className="aspect-video w-full">
-          {current.type === "image" ? (
-            <img
-              key={index + "-img"}
-              src={current.src}
-              alt={current.alt || "Media"}
-              className="h-full w-full object-cover"
-              loading="eager"
-              decoding="async"
-            />
-          ) : (
-            <video
-              key={index + "-vid"}
-              src={current.src}
-              controls
-              preload="metadata"
-              playsInline
-              poster={current.poster}
-              className="h-full w-full object-cover"
-            />
-          )}
+    <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+      {/* Slides */}
+      <div className="relative">
+        <div
+          className="flex transition-transform duration-500"
+          style={{ transform: `translateX(-${i * 100}%)` }}
+        >
+          {items.map((m, idx) => {
+            const active = idx === i;
+            return (
+              <div key={idx} className="min-w-full aspect-[16/9] bg-slate-100">
+                {m.type === "image" ? (
+                  <img
+                    src={m.src}
+                    alt={m.alt || "media"}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : active ? (
+                  <video
+                    key={m.src} // force un reload propre à l'arrivée sur la diapo
+                    className="h-full w-full object-cover"
+                    poster={m.poster}
+                    preload="auto"
+                    controls
+                    playsInline
+                    disablePictureInPicture
+                  >
+                    <source src={m.src} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    src={m.poster || ""}
+                    alt={m.alt || "aperçu vidéo"}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Flèches + Play/Pause */}
+        {/* Arrows */}
         {count > 1 && (
           <>
             <button
               onClick={prev}
               aria-label="Précédent"
-              className="absolute left-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 hover:bg-white shadow"
+              className="absolute left-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white/90 hover:bg-white shadow ring-1 ring-slate-200"
             >
-              <IconPrev />
+              ←
             </button>
             <button
               onClick={next}
               aria-label="Suivant"
-              className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 hover:bg-white shadow"
+              className="absolute right-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white/90 hover:bg-white shadow ring-1 ring-slate-200"
             >
-              <IconNext />
-            </button>
-            <button
-              onClick={() => setIsPlaying((p) => !p)}
-              aria-label={isPlaying ? "Mettre en pause" : "Lecture automatique"}
-              className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full bg-white/90 hover:bg-white px-3 py-1.5 text-sm shadow"
-            >
-              {isPlaying ? <IconPause /> : <IconPlay />}
-              {isPlaying ? "Pause" : "Lecture"}
+              →
             </button>
           </>
         )}
       </div>
 
-      {/* Miniatures */}
+      {/* Thumbnails / mini-carousel */}
       {count > 1 && (
-        <div className="mt-3 grid grid-flow-col auto-cols-[minmax(80px,1fr)] gap-2 overflow-x-auto">
-          {items.map((it, i) => (
-            <button
-              key={i}
-              onClick={() => go(i)}
-              className={`relative aspect-video overflow-hidden rounded-lg ring-2 ${i === index ? "ring-blue-600" : "ring-transparent"}`}
-              aria-label={`Aller au média ${i + 1}`}
-            >
-              {it.type === "image" ? (
+        <div className="flex gap-3 p-3 overflow-x-auto">
+          {items.map((m, idx) => {
+            const active = idx === i;
+            const isVideo = m.type === "video";
+            const thumbSrc = isVideo ? m.poster : m.src;
+
+            return (
+              <button
+                key={`thumb-${idx}`}
+                onClick={() => go(idx)}
+                className={`relative shrink-0 rounded-xl border ${
+                  active
+                    ? "border-slate-900 ring-2 ring-slate-900"
+                    : "border-slate-200 hover:border-slate-300"
+                }`}
+                style={{ width: 88, height: 56 }}
+                aria-label={`Aller au média ${idx + 1}`}
+              >
                 <img
-                  src={it.thumb || it.src}
-                  alt={it.alt || `Media ${i + 1}`}
-                  className="h-full w-full object-cover"
+                  src={thumbSrc}
+                  alt={m.alt || `Media ${idx + 1}`}
+                  className="h-full w-full object-cover rounded-xl"
                   loading="lazy"
                   decoding="async"
                 />
-              ) : (
-                <div className="h-full w-full grid place-items-center bg-black text-white text-xs">
-                  <IconPlay />
-                </div>
-              )}
-            </button>
-          ))}
+                {isVideo && (
+                  <span className="absolute inset-0 grid place-items-center">
+                    <span className="inline-grid h-5 w-5 place-items-center rounded-full bg-black/60 text-white text-[10px]">
+                      ▶
+                    </span>
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>
