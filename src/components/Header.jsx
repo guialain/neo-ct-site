@@ -21,7 +21,7 @@ export default function Header() {
   const linkIdle = "text-slate-600 hover:text-slate-900";
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
+<header className="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-slate-200 pt-[env(safe-area-inset-top)]">
       <nav className="mx-auto max-w-7xl px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3" aria-label="Aller à l’accueil">
