@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Header() {
   const linkBase =
-    "relative px-3 py-2 text-[15px] md:text-base lg:text-lg font-medium text-slate-700 hover:text-slate-900 transition-colors";
+    "relative px-2 py-1 text-[15px] md:text-base lg:text-lg font-medium text-slate-700 hover:text-slate-900 transition-colors";
   const linkActive =
     "after:absolute after:left-0 after:-bottom-1 after:h-[3px] after:w-full after:bg-slate-900";
 
