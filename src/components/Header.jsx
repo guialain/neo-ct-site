@@ -10,13 +10,13 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur border-b border-slate-200/60">
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+	 <div className="mx-auto max-w-7xl px-4 py-2 md:py-2.5 flex items-center justify-between">
         {/* Logo plus grand */}
         <a href="/" className="flex items-center gap-2">
           <img
             src="/logo-neoct.jpg"        // vérifie le nom si besoin
             alt="NEO Construction & Travaux"
-            className="h-12 md:h-14 lg:h-[90px] w-auto"   // <-- tailles
+            className="h-12 md:h-14 lg:h-[100px] w-auto"   // <-- tailles
             loading="eager"
             decoding="async"
           />
