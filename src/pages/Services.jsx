@@ -1,15 +1,116 @@
 // src/pages/Services.jsx
-import React from "react";
+import React, { useCallback } from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function Services() {
+  // — Identité / URLs (cohérents avec Home & Contact)
+  const brand = "NEO Construction & Travaux";
+  const site = "https://www.neoct.ci";
+  const canonical = `${site}/services`;
+  const ogImage = `${site}/og/services-1200x630.jpg`; // (mets l’image dans /public/og/ si tu veux)
+
+  // — WhatsApp (même logique que Home/Contact)
+  const phoneWhats = "2250576428643";
+  const openWhatsApp = useCallback((e) => {
+    e.preventDefault();
+    const msg =
+      "Bonjour NEO CT 👋, j’aimerais en savoir plus sur vos services (clé en main, rénovation, fourniture & pose).";
+    const appUrl = `whatsapp://send?phone=${phoneWhats}&text=${encodeURIComponent(msg)}`;
+    const webUrl = `https://wa.me/${phoneWhats}?text=${encodeURIComponent(msg)}`;
+    const t0 = Date.now();
+    window.location.href = appUrl;
+    setTimeout(() => {
+      if (Date.now() - t0 < 1200) {
+        window.open(webUrl, "_blank", "noopener,noreferrer");
+      }
+    }, 800);
+  }, []);
+
+  // — JSON-LD : 3 services + ItemList (Google)
+  const services = [
+    {
+      name: "Construction clé en main",
+      description:
+        "Études d’exécution, gros œuvre, second œuvre, étanchéité & couverture, VRD, coordination et réception.",
+    },
+    {
+      name: "Fourniture & Pose",
+      description:
+        "Carrelage, menuiseries, sanitaires/plomberie, électricité, peinture et finitions.",
+    },
+    {
+      name: "Rénovation | Réhabilitation",
+      description:
+        "Remise à niveau structurelle et technique, réaménagement, mises aux normes, finitions complètes.",
+    },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Services de construction",
+    itemListElement: services.map((s, i) => ({
+      "@type": "Service",
+      position: i + 1,
+      name: s.name,
+      description: s.description,
+      provider: {
+        "@type": "Organization",
+        name: brand,
+        url: site,
+      },
+      areaServed: "CI",
+    })),
+  };
+
   return (
     <section id="services" className="bg-white">
+      {/* SEO / Partage */}
+      <Helmet prioritizeSeoTags>
+        <html lang="fr" />
+        <title>Services — {brand}</title>
+        <meta
+          name="description"
+          content="Études, exécution, finitions, rénovation, fourniture & pose — NEO CT pilote vos chantiers de A à Z."
+        />
+        <link rel="canonical" href={canonical} />
+        <meta name="robots" content="index,follow" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={brand} />
+        <meta property="og:title" content={`Services — ${brand}`} />
+        <meta
+          property="og:description"
+          content="Un interlocuteur unique, du plan à la livraison. Clé en main, rénovation, fourniture & pose."
+        />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Services — ${brand}`} />
+        <meta
+          name="twitter:description"
+          content="Études, exécution, finitions, rénovation, fourniture & pose."
+        />
+        <meta name="twitter:image" content={ogImage} />
+
+        {/* JSON-LD */}
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
+
       <div className="mx-auto max-w-7xl px-4 py-16 sm:py-20">
-        {/* Header */}
+        {/* Header avec H1 pour le SEO */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
+          <p className="text-xs font-semibold uppercase tracking-wide text-blue-700">
+            Nos services
+          </p>
+          <h1 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">
             Un interlocuteur unique, du plan à la livraison
-          </h2>
+          </h1>
           <p className="mt-3 text-slate-600">
             Nous pilotons votre chantier de A à Z : études, exécution, finitions,
             coordination des corps d’état et réception.
@@ -23,9 +124,9 @@ export default function Services() {
             <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold">
               1
             </div>
-            <h3 className="text-lg font-semibold text-slate-900">
+            <h2 className="text-lg font-semibold text-slate-900">
               Construction clé en main
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2 text-slate-700">
               <li>Études d’exécution, implantation et terrassement</li>
               <li>
@@ -53,9 +154,9 @@ export default function Services() {
             <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold">
               2
             </div>
-            <h3 className="text-lg font-semibold text-slate-900">
+            <h2 className="text-lg font-semibold text-slate-900">
               Fourniture &amp; Pose
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2 text-slate-700">
               <li>Carrelage/sols (intérieur/extérieur), faïence, pierres</li>
               <li>Menuiseries (bois, alu, PVC), portes, baies, verrières</li>
@@ -73,9 +174,9 @@ export default function Services() {
             <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold">
               3
             </div>
-            <h3 className="text-lg font-semibold text-slate-900">
+            <h2 className="text-lg font-semibold text-slate-900">
               Rénovation | Réhabilitation
-            </h3>
+            </h2>
             <ul className="mt-4 space-y-2 text-slate-700">
               <li>Remise à niveau structurelle et technique</li>
               <li>Réaménagement intérieur, isolation, confort thermique</li>
@@ -84,57 +185,81 @@ export default function Services() {
           </article>
         </div>
 
-        {/* Options */}
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-          <h4 className="text-base font-semibold text-slate-900">
-            Options (selon besoins)
-          </h4>
-          <ul className="mt-3 grid gap-2 text-slate-700 sm:grid-cols-2">
-            <li>Design &amp; plans (APS/APD) en partenariat BE/architectes</li>
-            <li>Charpente métallique et structures spécifiques</li>
-            <li>Clôtures / Portails – réalisation et automatisme</li>
-          </ul>
-        </div>
+{/* Options — 4 cases with smaller first one */}
+<div className="mt-12 grid grid-cols-1 md:[grid-template-columns:0.6fr_1fr_1fr_1fr] gap-3 md:gap-4">
+
+  {/* Case 1 : Titre (reduced width) */}
+  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 flex items-center justify-center">
+    <h4 className="text-base font-semibold text-slate-900 m-0 text-center">
+      Besoins Optionnels
+    </h4>
+  </div>
+
+  {/* Case 2 */}
+  <div className="rounded-2xl border border-slate-200 bg-white p-4 flex items-center">
+    <p className="text-slate-700 m-0">Design &amp; plans (APS/APD) en partenariat BE/architectes</p>
+  </div>
+
+  {/* Case 3 */}
+  <div className="rounded-2xl border border-slate-200 bg-white p-4 flex items-center">
+    <p className="text-slate-700 m-0">Charpente métallique et structures spécifiques</p>
+  </div>
+
+  {/* Case 4 */}
+  <div className="rounded-2xl border border-slate-200 bg-white p-4 flex items-center">
+    <p className="text-slate-700 m-0">Clôtures / Portails – réalisation et automatisme</p>
+  </div>
+</div>
 
         {/* Process (timeline simple) */}
-        <div className="mt-12">
-          <h4 className="text-base font-semibold text-slate-900">
-            Process en 5 étapes
-          </h4>
-          <ol className="mt-4 space-y-4">
-            {[
-              {
-                t: "Prise de brief & visite",
-                d: "Compréhension du besoin",
-              },
-              {
-                t: "Avant-Projet & chiffrage",
-                d: "Devis clair et délais associés",
-              },
-              {
-                t: "Lancement & préparation",
-                d: "Planning détaillé, approvisionnement",
-              },
-              {
-                t: "Exécution & contrôle",
-                d: "Suivi qualité, comptes-rendus",
-              },
-              {
-                t: "Réception & garanties",
-                d: "Mise en service, levée de réserves",
-              },
-            ].map((step, i) => (
-              <li key={i} className="flex items-start gap-4">
-                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-semibold">
-                  {i + 1}
-                </span>
-                <div>
-                  <div className="font-medium text-slate-900">{step.t}</div>
-                  <div className="text-slate-600">{step.d}</div>
-                </div>
-              </li>
-            ))}
-          </ol>
+<div className="mt-12">
+  <h3 className="text-base font-semibold text-slate-900">
+    Process en 5 étapes
+  </h3>
+
+  {/* ⬇️ Passe d'une liste verticale à une grille horizontale */}
+  <ol className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 items-start">
+    {[
+      { t: "Prise de brief & visite", d: "Compréhension du besoin" },
+      { t: "Avant-Projet & chiffrage", d: "Devis clair et délais associés" },
+      { t: "Lancement & préparation", d: "Planning détaillé, approvisionnement" },
+      { t: "Exécution & contrôle", d: "Suivi qualité, comptes-rendus" },
+      { t: "Réception & garanties", d: "Mise en service, levée de réserves" },
+    ].map((step, i) => (
+      <li
+        key={i}
+        className="h-full rounded-2xl border border-slate-200 bg-white p-4 shadow-sm flex items-start gap-3"
+      >
+        <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-semibold">
+          {i + 1}
+        </span>
+        <div>
+          <div className="font-medium text-slate-900">{step.t}</div>
+          <div className="text-slate-600">{step.d}</div>
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+
+        {/* CTA final */}
+        <div className="mt-12 flex flex-wrap items-center gap-3">
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-800 hover:bg-slate-50"
+            aria-label="Aller à la page Contact pour demander un devis"
+          >
+            📄 Demander un devis
+          </a>
+          <a
+            href={`https://wa.me/${phoneWhats}`}
+            onClick={openWhatsApp}
+            className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700"
+            aria-label="Discuter sur WhatsApp"
+          >
+            💬 Discuter sur WhatsApp
+          </a>
         </div>
       </div>
     </section>

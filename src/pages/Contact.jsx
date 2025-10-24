@@ -196,25 +196,30 @@ export default function Contact() {
 
             {/* Carte */}
             <div className="mt-6 overflow-hidden rounded-xl ring-1 ring-slate-200">
-              <iframe
-                title="Plan d’accès"
-                className="h-56 w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                src={`https://www.google.com/maps?hl=fr&q=${address.lat},${address.lng}&z=18&output=embed`}
-              />
+            <iframe
+  title="Plan d’accès"
+  className="h-56 w-full"
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  allowFullScreen
+  src={`https://www.google.com/maps?hl=fr&q=${address.lat},${address.lng}(${encodeURIComponent(
+    address.label
+  )})&z=18&output=embed`}
+/>
+
             </div>
 
             {/* Itinéraire */}
             <a
-              className="mt-2 inline-block text-sm text-blue-700 hover:underline"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${address.lat},${address.lng}&destination_place_id=&travelmode=driving`}
-              target="_blank"
-              rel="noopener noreferrer"
+  className="mt-2 inline-block text-sm text-blue-700 hover:underline"
+  href={`https://www.google.com/maps/dir/?api=1&destination=${address.lat},${address.lng}&travelmode=driving`}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`Itinéraire vers ${address.label}`}
+>
+  🚗 Itinéraire vers {address.label}
+</a>
 
-            >
-              🚗 Itinéraire vers {address.label}
-            </a>
           </aside>
 
           {/* Formulaire */}
