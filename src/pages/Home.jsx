@@ -116,7 +116,7 @@ export default function Home() {
                 </p>
 
                 <h1 className="mt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                  Vos projets méritent l’excellence.
+                  Vos projets méritent le meilleur.
                   <br className="hidden sm:block" />
                   <span className="block">Construisons ensemble vos projets</span>
                 </h1>
