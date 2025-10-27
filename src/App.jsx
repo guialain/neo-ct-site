@@ -16,9 +16,9 @@ import Contact from "./pages/Contact.jsx";
 
 function SiteLayout() {
   return (
-    <div className="min-h-dvh flex flex-col bg-gradient-to-br from-blue-50 via-slate-50 to-white">
+    <div className="min-h-dvh flex flex-col bg-gradient-to-br from-blue-50 via-slate-50 to-white overflow-x-hidden w-full">
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 w-full overflow-x-hidden">
         <Outlet />
       </main>
       <Footer />

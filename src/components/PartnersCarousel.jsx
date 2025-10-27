@@ -47,13 +47,13 @@ export default function PartnersCarousel({
   const track = [...PARTNERS, ...PARTNERS];
 
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-10">
+    <section className="mx-auto max-w-7xl px-3 sm:px-4 pb-10 w-full overflow-hidden">
       <div className="text-center mb-2">
-        <h2 className="text-xl md:text-2xl font-bold text-slate-900">{title}</h2>
-        {/* Pas de sous-titre pour gagner de l’espace */}
+        <h2 className="text-xl md:text-2xl font-bold text-slate-900 break-words">{title}</h2>
+        {/* Pas de sous-titre pour gagner de l'espace */}
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl">
+      <div className="relative overflow-hidden rounded-2xl w-full">
         <div
           className="flex will-change-transform"
           style={{
@@ -68,8 +68,8 @@ export default function PartnersCarousel({
         </div>
 
         {/* Fades aux bords */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-white to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-6 sm:w-8 bg-gradient-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-6 sm:w-8 bg-gradient-to-l from-white to-transparent" />
       </div>
 
       <style>{`

@@ -25,11 +25,11 @@ export default function HeroCarousel({
   if (!count) return null;
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
+    <div className="rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
       {/* Slides */}
       <div className="relative">
         <div
-          className="flex transition-transform duration-500"
+          className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${i * 100}%)` }}
         >
           {items.map((m, idx) => {
@@ -46,7 +46,7 @@ export default function HeroCarousel({
                   />
                 ) : active ? (
                   <video
-                    key={m.src} // force un reload propre à l'arrivée sur la diapo
+                    key={m.src}
                     className="h-full w-full object-cover"
                     poster={m.poster}
                     preload="auto"
@@ -70,20 +70,20 @@ export default function HeroCarousel({
           })}
         </div>
 
-        {/* Arrows */}
+        {/* Arrows - responsive */}
         {count > 1 && (
           <>
             <button
               onClick={prev}
               aria-label="Précédent"
-              className="absolute left-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white/90 hover:bg-white shadow ring-1 ring-slate-200"
+              className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 grid h-8 w-8 sm:h-9 sm:w-9 place-items-center rounded-full bg-white/90 hover:bg-white shadow ring-1 ring-slate-200 text-sm sm:text-base transition"
             >
               ←
             </button>
             <button
               onClick={next}
               aria-label="Suivant"
-              className="absolute right-3 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-white/90 hover:bg-white shadow ring-1 ring-slate-200"
+              className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 grid h-8 w-8 sm:h-9 sm:w-9 place-items-center rounded-full bg-white/90 hover:bg-white shadow ring-1 ring-slate-200 text-sm sm:text-base transition"
             >
               →
             </button>
@@ -91,9 +91,9 @@ export default function HeroCarousel({
         )}
       </div>
 
-      {/* Thumbnails / mini-carousel */}
+      {/* Thumbnails / mini-carousel - responsive */}
       {count > 1 && (
-        <div className="flex gap-3 p-3 overflow-x-auto">
+        <div className="flex gap-2 sm:gap-3 p-2 sm:p-3 overflow-x-auto scrollbar-thin">
           {items.map((m, idx) => {
             const active = idx === i;
             const isVideo = m.type === "video";
@@ -103,24 +103,24 @@ export default function HeroCarousel({
               <button
                 key={`thumb-${idx}`}
                 onClick={() => go(idx)}
-                className={`relative shrink-0 rounded-xl border ${
+                className={`relative shrink-0 rounded-lg sm:rounded-xl border ${
                   active
                     ? "border-slate-900 ring-2 ring-slate-900"
                     : "border-slate-200 hover:border-slate-300"
-                }`}
-                style={{ width: 88, height: 56 }}
+                } transition`}
+                style={{ width: 72, height: 48 }}
                 aria-label={`Aller au média ${idx + 1}`}
               >
                 <img
                   src={thumbSrc}
                   alt={m.alt || `Media ${idx + 1}`}
-                  className="h-full w-full object-cover rounded-xl"
+                  className="h-full w-full object-cover rounded-lg sm:rounded-xl"
                   loading="lazy"
                   decoding="async"
                 />
                 {isVideo && (
                   <span className="absolute inset-0 grid place-items-center">
-                    <span className="inline-grid h-5 w-5 place-items-center rounded-full bg-black/60 text-white text-[10px]">
+                    <span className="inline-grid h-4 w-4 sm:h-5 sm:w-5 place-items-center rounded-full bg-black/60 text-white text-[9px] sm:text-[10px]">
                       ▶
                     </span>
                   </span>

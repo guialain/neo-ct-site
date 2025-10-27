@@ -79,27 +79,27 @@ export default function Realisations() {
   return (
     <section className="bg-gradient-to-b from-white to-slate-50">
       {/* en-tête */}
-      <div className="mx-auto max-w-7xl px-4 pt-10 pb-6">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">Nos réalisations</h1>
-        <p className="mt-2 text-slate-600">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 pt-8 sm:pt-10 pb-4 sm:pb-6">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">Nos réalisations</h1>
+        <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
           Une sélection de chantiers livrés : logements, tertiaire et réhabilitations.
-          Chaque carte ci-dessous contient un diaporama photos/vidéos.
+          <span className="hidden sm:inline"> Chaque carte ci-dessous contient un diaporama photos/vidéos.</span>
         </p>
       </div>
 
       {/* cartes */}
-      <div className="mx-auto max-w-7xl px-4 pb-12 grid gap-6 md:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 pb-10 sm:pb-12 grid gap-4 sm:gap-5 md:gap-6 sm:grid-cols-2">
         {projects.map((p) => (
-          <article key={p.id} className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <article key={p.id} className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden">
             {/* carousel dans la carte */}
             <InlineCarousel items={p.media} aspect="video" />
 
-            <div className="p-4 sm:p-5">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h2 className="text-xl font-bold text-slate-900">{p.title}</h2>
-                <span className="text-sm text-slate-500">{p.location}</span>
+            <div className="p-3 sm:p-4 md:p-5">
+              <div className="flex flex-col xs:flex-row xs:items-baseline xs:justify-between gap-1 xs:gap-2">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900">{p.title}</h2>
+                <span className="text-xs sm:text-sm text-slate-500">{p.location}</span>
               </div>
-              <p className="mt-1 text-slate-600">{p.subtitle}</p>
+              <p className="mt-1 sm:mt-2 text-sm sm:text-base text-slate-600">{p.subtitle}</p>
             </div>
           </article>
         ))}

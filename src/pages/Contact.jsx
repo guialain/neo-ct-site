@@ -128,37 +128,37 @@ export default function Contact() {
 
       {/* Bandeau */}
       <section className="border-b bg-white/70">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:py-10">
-          <p className="text-xs font-semibold uppercase tracking-wide text-blue-700">Contact</p>
-          <h1 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">Parlons de votre projet</h1>
-          <p className="mt-2 text-slate-600">
+        <div className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 md:py-10">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-blue-700">Contact</p>
+          <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900">Parlons de votre projet</h1>
+          <p className="mt-2 text-sm sm:text-base text-slate-600">
             Demandez un devis, planifiez un rendez-vous ou envoyez-nous simplement un message. Réponse rapide.
           </p>
         </div>
       </section>
 
       {/* Grille: Coordonnées + Formulaire */}
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:py-12">
-        <div className="grid gap-6 lg:grid-cols-12">
+      <section className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 md:py-12">
+        <div className="grid gap-4 sm:gap-5 md:gap-6 lg:grid-cols-12">
           {/* Coordonnées */}
-          <aside className="lg:col-span-5 rounded-2xl bg-white p-5 sm:p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-lg font-semibold text-slate-900">Coordonnées</h2>
+          <aside className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-white p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-200">
+            <h2 className="text-base sm:text-lg font-semibold text-slate-900">Coordonnées</h2>
 
-           <dl className="mt-4 space-y-2">
+           <dl className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
   {/* Adresse */}
-  <div className="grid grid-cols-[120px_1fr] items-baseline gap-3">
-    <dt className="text-sm font-medium text-slate-500">Adresse</dt>
-    <dd className="text-slate-700">
+  <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
+    <dt className="text-xs sm:text-sm font-medium text-slate-500">Adresse</dt>
+    <dd className="text-sm sm:text-base text-slate-700">
       {address.street}, {address.city}
     </dd>
   </div>
 
   {/* Téléphone */}
-  <div className="grid grid-cols-[120px_1fr] items-baseline gap-3">
-    <dt className="text-sm font-medium text-slate-500">Téléphone</dt>
+  <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
+    <dt className="text-xs sm:text-sm font-medium text-slate-500">Téléphone</dt>
     <dd>
       <a
-        className="text-blue-700 hover:underline"
+        className="text-sm sm:text-base text-blue-700 hover:underline"
         href={`tel:${phoneCall.replace(/\s+/g, "")}`}
       >
         {phoneCall}
@@ -167,10 +167,10 @@ export default function Contact() {
   </div>
 
   {/* Email */}
-  <div className="grid grid-cols-[120px_1fr] items-baseline gap-3">
-    <dt className="text-sm font-medium text-slate-500">Email</dt>
+  <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
+    <dt className="text-xs sm:text-sm font-medium text-slate-500">Email</dt>
     <dd>
-      <a className="text-blue-700 hover:underline" href={`mailto:${email}`}>
+      <a className="text-sm sm:text-base text-blue-700 hover:underline break-all" href={`mailto:${email}`}>
         {email}
       </a>
     </dd>
@@ -178,27 +178,27 @@ export default function Contact() {
 </dl>
 
 
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="mt-4 sm:mt-5 flex flex-col xs:flex-row flex-wrap gap-2 sm:gap-3">
               <a
                 href={`tel:${phoneCall.replace(/\s+/g, "")}`}
-                className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-800 hover:bg-slate-50"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm sm:text-base font-medium text-slate-800 hover:bg-slate-50 transition"
               >
                 📞 Appeler
               </a>
               <a
                 href={`https://wa.me/${phoneWhats}`}
                 onClick={openWhatsApp}
-                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm sm:text-base font-semibold text-white hover:bg-emerald-700 transition"
               >
                 💬 WhatsApp
               </a>
             </div>
 
             {/* Carte */}
-            <div className="mt-6 overflow-hidden rounded-xl ring-1 ring-slate-200">
+            <div className="mt-4 sm:mt-5 md:mt-6 overflow-hidden rounded-xl ring-1 ring-slate-200">
             <iframe
-  title="Plan d’accès"
-  className="h-56 w-full"
+  title="Plan d'accès"
+  className="h-48 sm:h-56 w-full"
   loading="lazy"
   referrerPolicy="no-referrer-when-downgrade"
   allowFullScreen
@@ -211,7 +211,7 @@ export default function Contact() {
 
             {/* Itinéraire */}
             <a
-  className="mt-2 inline-block text-sm text-blue-700 hover:underline"
+  className="mt-2 inline-block text-xs sm:text-sm text-blue-700 hover:underline"
   href={`https://www.google.com/maps/dir/?api=1&destination=${address.lat},${address.lng}&travelmode=driving`}
   target="_blank"
   rel="noopener noreferrer"
@@ -223,35 +223,35 @@ export default function Contact() {
           </aside>
 
           {/* Formulaire */}
-          <div className="lg:col-span-7 rounded-2xl bg-white p-5 sm:p-6 shadow-sm ring-1 ring-slate-200">
-            <h2 className="text-lg font-semibold text-slate-900">Envoyer un message</h2>
-            <p className="mt-1 text-sm text-slate-600">
+          <div className="lg:col-span-7 rounded-xl sm:rounded-2xl bg-white p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-200">
+            <h2 className="text-base sm:text-lg font-semibold text-slate-900">Envoyer un message</h2>
+            <p className="mt-1 text-xs sm:text-sm text-slate-600">
               Dites-nous quelques mots sur votre besoin — nous revenons vers vous rapidement.
             </p>
 
-            <form className="mt-4 grid gap-4" onSubmit={onSubmitMailto}>
-              <div className="grid gap-4 sm:grid-cols-2">
+            <form className="mt-3 sm:mt-4 grid gap-3 sm:gap-4" onSubmit={onSubmitMailto}>
+              <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                 <label className="block">
-                  <span className="block text-sm font-medium text-slate-700">Nom complet</span>
+                  <span className="block text-xs sm:text-sm font-medium text-slate-700">Nom complet</span>
                   <input
                     type="text"
                     name="name"
                     autoComplete="name"
                     required
-                    className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-0 focus:border-slate-400"
+                    className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition"
                     placeholder="Ex. Gui Alain BAHIBO"
                   />
                 </label>
 
                 <label className="block">
-                  <span className="block text-sm font-medium text-slate-700">Téléphone</span>
+                  <span className="block text-xs sm:text-sm font-medium text-slate-700">Téléphone</span>
                   <input
   type="tel"
   name="tel"
   autoComplete="tel"
   inputMode="tel"
   pattern="[0-9+\s()-]*"
-  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-0 focus:border-slate-400"
+  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition"
   placeholder="+225 …"
 />
 
@@ -259,30 +259,30 @@ export default function Contact() {
               </div>
 
               <label className="block">
-                <span className="block text-sm font-medium text-slate-700">Sujet</span>
+                <span className="block text-xs sm:text-sm font-medium text-slate-700">Sujet</span>
                 <input
                   type="text"
                   name="subject"
-                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-0 focus:border-slate-400"
+                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition"
                   placeholder="Devis – Dalle béton R+1, rénovation, etc."
                 />
               </label>
 
               <label className="block">
-                <span className="block text-sm font-medium text-slate-700">Message</span>
+                <span className="block text-xs sm:text-sm font-medium text-slate-700">Message</span>
                 <textarea
                   name="message"
-                  rows={6}
+                  rows={5}
                   required
-                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 outline-none ring-0 focus:border-slate-400"
-                  placeholder="Décrivez votre projet (type d’ouvrage, surface, localisation, échéance…)"
+                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition resize-y"
+                  placeholder="Décrivez votre projet (type d'ouvrage, surface, localisation, échéance…)"
                 />
               </label>
 
-              <div className="mt-1 flex flex-wrap gap-3">
+              <div className="mt-1 flex flex-col xs:flex-row flex-wrap gap-2 sm:gap-3">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 font-semibold text-white hover:bg-slate-800"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-slate-800 transition"
                 >
                   ✉️ Envoyer par e-mail
                 </button>
@@ -290,14 +290,14 @@ export default function Contact() {
                 <a
                   href={`https://wa.me/${phoneWhats}`}
                   onClick={openWhatsApp}
-                  className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2.5 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-emerald-700 transition"
                 >
                   💬 Discuter sur WhatsApp
                 </a>
               </div>
 
               <p className="text-xs text-slate-500">
-                En soumettant ce formulaire, vous acceptez d’être recontacté(e) par {brand}.
+                En soumettant ce formulaire, vous acceptez d'être recontacté(e) par {brand}.
               </p>
             </form>
           </div>
