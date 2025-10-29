@@ -54,9 +54,7 @@ export default function Contact() {
         (tel ? `Téléphone: ${tel}\n` : "") +
         `\nMessage:\n${message}\n`;
 
-      const mailto = `mailto:${email}?subject=${encodeURIComponent(
-        sujet
-      )}&body=${encodeURIComponent(body)}`;
+      const mailto = `mailto:${email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     },
     [email]
@@ -95,7 +93,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="bg-gradient-to-br from-blue-50 via-slate-50 to-white">
+    <main className="bg-white">
       <Helmet prioritizeSeoTags>
         <html lang="fr" />
         <title>Contact — {brand}</title>
@@ -127,56 +125,50 @@ export default function Contact() {
       </Helmet>
 
       {/* Bandeau */}
-      <section className="border-b bg-white/70">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 md:py-10">
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-blue-700">Contact</p>
-          <h1 className="mt-2 text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900">Parlons de votre projet</h1>
-          <p className="mt-2 text-sm sm:text-base text-slate-600">
-            Demandez un devis, planifiez un rendez-vous ou envoyez-nous simplement un message. Réponse rapide.
-          </p>
-        </div>
+      <section className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 border-b border-slate-200">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">Contact</h1>
+        <p className="mt-2 text-sm sm:text-base text-slate-600">Parlons de votre projet</p>
       </section>
 
       {/* Grille: Coordonnées + Formulaire */}
       <section className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 md:py-12">
         <div className="grid gap-4 sm:gap-5 md:gap-6 lg:grid-cols-12">
           {/* Coordonnées */}
-          <aside className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-white p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-200">
+          <aside className="lg:col-span-5 rounded-xl sm:rounded-2xl bg-slate-50 p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-200">
             <h2 className="text-base sm:text-lg font-semibold text-slate-900">Coordonnées</h2>
 
-           <dl className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
-  {/* Adresse */}
-  <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
-    <dt className="text-xs sm:text-sm font-medium text-slate-500">Adresse</dt>
-    <dd className="text-sm sm:text-base text-slate-700">
-      {address.street}, {address.city}
-    </dd>
-  </div>
+            <dl className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
+              {/* Adresse */}
+              <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
+                <dt className="text-xs sm:text-sm font-medium text-slate-500">Adresse</dt>
+                <dd className="text-sm sm:text-base text-slate-700">
+                  {address.street}, {address.city}
+                </dd>
+              </div>
 
-  {/* Téléphone */}
-  <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
-    <dt className="text-xs sm:text-sm font-medium text-slate-500">Téléphone</dt>
-    <dd>
-      <a
-        className="text-sm sm:text-base text-blue-700 hover:underline"
-        href={`tel:${phoneCall.replace(/\s+/g, "")}`}
-      >
-        {phoneCall}
-      </a>
-    </dd>
-  </div>
+              {/* Téléphone */}
+              <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
+                <dt className="text-xs sm:text-sm font-medium text-slate-500">Téléphone</dt>
+                <dd>
+                  <a
+                    className="text-sm sm:text-base text-blue-700 hover:underline"
+                    href={`tel:${phoneCall.replace(/\s+/g, "")}`}
+                  >
+                    {phoneCall}
+                  </a>
+                </dd>
+              </div>
 
-  {/* Email */}
-  <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
-    <dt className="text-xs sm:text-sm font-medium text-slate-500">Email</dt>
-    <dd>
-      <a className="text-sm sm:text-base text-blue-700 hover:underline break-all" href={`mailto:${email}`}>
-        {email}
-      </a>
-    </dd>
-  </div>
-</dl>
-
+              {/* Email */}
+              <div className="grid grid-cols-1 xs:grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] gap-1 xs:gap-3">
+                <dt className="text-xs sm:text-sm font-medium text-slate-500">Email</dt>
+                <dd>
+                  <a className="text-sm sm:text-base text-blue-700 hover:underline break-all" href={`mailto:${email}`}>
+                    {email}
+                  </a>
+                </dd>
+              </div>
+            </dl>
 
             <div className="mt-4 sm:mt-5 flex flex-col xs:flex-row flex-wrap gap-2 sm:gap-3">
               <a
@@ -196,34 +188,32 @@ export default function Contact() {
 
             {/* Carte */}
             <div className="mt-4 sm:mt-5 md:mt-6 overflow-hidden rounded-xl ring-1 ring-slate-200">
-            <iframe
-  title="Plan d'accès"
-  className="h-48 sm:h-56 w-full"
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-  allowFullScreen
-  src={`https://www.google.com/maps?hl=fr&q=${address.lat},${address.lng}(${encodeURIComponent(
-    address.label
-  )})&z=18&output=embed`}
-/>
-
+              <iframe
+                title="Plan d'accès"
+                className="h-48 sm:h-56 w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                src={`https://www.google.com/maps?hl=fr&q=${address.lat},${address.lng}(${encodeURIComponent(
+                  address.label
+                )})&z=18&output=embed`}
+              />
             </div>
 
             {/* Itinéraire */}
             <a
-  className="mt-2 inline-block text-xs sm:text-sm text-blue-700 hover:underline"
-  href={`https://www.google.com/maps/dir/?api=1&destination=${address.lat},${address.lng}&travelmode=driving`}
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label={`Itinéraire vers ${address.label}`}
->
-  🚗 Itinéraire vers {address.label}
-</a>
-
+              className="mt-2 inline-block text-xs sm:text-sm text-blue-700 hover:underline"
+              href={`https://www.google.com/maps/dir/?api=1&destination=${address.lat},${address.lng}&travelmode=driving`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Itinéraire vers ${address.label}`}
+            >
+              🚗 Itinéraire vers {address.label}
+            </a>
           </aside>
 
           {/* Formulaire */}
-          <div className="lg:col-span-7 rounded-xl sm:rounded-2xl bg-white p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-200">
+          <div className="lg:col-span-7 rounded-xl sm:rounded-2xl bg-slate-50 p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-200">
             <h2 className="text-base sm:text-lg font-semibold text-slate-900">Envoyer un message</h2>
             <p className="mt-1 text-xs sm:text-sm text-slate-600">
               Dites-nous quelques mots sur votre besoin — nous revenons vers vous rapidement.
@@ -246,15 +236,14 @@ export default function Contact() {
                 <label className="block">
                   <span className="block text-xs sm:text-sm font-medium text-slate-700">Téléphone</span>
                   <input
-  type="tel"
-  name="tel"
-  autoComplete="tel"
-  inputMode="tel"
-  pattern="[0-9+\s()-]*"
-  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition"
-  placeholder="+225 …"
-/>
-
+                    type="tel"
+                    name="tel"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    pattern="[0-9+\\s()-]*"
+                    className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition"
+                    placeholder="+225 …"
+                  />
                 </label>
               </div>
 
@@ -282,7 +271,7 @@ export default function Contact() {
               <div className="mt-1 flex flex-col xs:flex-row flex-wrap gap-2 sm:gap-3">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-slate-800 transition"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-orange-100 border border-orange-300 text-orange-700 hover:bg-orange-400 hover:border-orange-700 hover:text-white px-4 py-2.5 sm:py-2 text-sm sm:text-base font-semibold active:scale-95 transition-all shadow-sm hover:shadow-lg"
                 >
                   ✉️ Envoyer par e-mail
                 </button>

@@ -16,7 +16,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="bg-gradient-to-br from-blue-50 via-slate-50 to-white">
+    <main className="bg-white">
       {/* Héros : texte + carousel */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:py-14 grid gap-8 md:grid-cols-12 items-center">
         {/* Colonne texte */}

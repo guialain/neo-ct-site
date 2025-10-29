@@ -18,10 +18,11 @@ function SiteLayout() {
   return (
     <div className="min-h-dvh flex flex-col bg-gradient-to-br from-blue-50 via-slate-50 to-white overflow-x-hidden w-full">
       <Header />
-      <main className="flex-1 w-full overflow-x-hidden">
+      {/* Padding top pour ne pas passer sous le header sticky */}
+      <main className="flex-1 w-full overflow-x-hidden pt-14 sm:pt-16 md:pt-[72px] lg:pt-24">
         <Outlet />
       </main>
-      <Footer />
+      <Footer showBackground={true} />
     </div>
   );
 }
@@ -30,9 +31,9 @@ function NotFound() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16">
       <h1 className="text-2xl font-bold text-slate-900">Page introuvable</h1>
-      <p className="mt-2 text-slate-600">Vérifiez l’URL ou revenez à l’accueil.</p>
+      <p className="mt-2 text-slate-600">Vérifiez l'URL ou revenez à l'accueil.</p>
       <p className="mt-4">
-        <Link className="text-blue-600 underline" to="/">← Retour</Link>
+        <Link className="text-orange-600 hover:text-orange-700 underline" to="/">← Retour</Link>
       </p>
     </div>
   );
