@@ -161,77 +161,80 @@ export default function Services() {
             }`}
             style={{ transitionDelay: '200ms' }}
           >
-            <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
-              1
+            <div className="mb-3 flex items-center gap-3">
+              <div className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 font-semibold text-sm sm:text-base">
+                1
+              </div>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-700">
+                Construction Bâtiment
+              </h2>
             </div>
-            <h2 className="text-base sm:text-lg font-semibold text-slate-900">
-              Construction clé en main
-            </h2>
-            <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
-              <li>Études d’exécution, implantation et terrassement</li>
-              <li>
-                <span className="font-medium">Gros œuvre</span> : fondations,
-                voiles/dalles BA, murs porteurs
-              </li>
-              <li>
-                <span className="font-medium">Second œuvre</span> : maçonnerie,
-                cloisons, chapes, escaliers
-              </li>
-              <li>
-                <span className="font-medium">Étanchéité & couverture</span> :
-                toitures, terrasses, évacuations
-              </li>
-              <li>
-                <span className="font-medium">VRD</span> : réseaux, drainage,
-                voiries/parkings
-              </li>
-              <li>Coordination des corps d’état, réception de chantier</li>
-            </ul>
+            <div className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base text-slate-700">
+              <p><strong>Périmètre :</strong> villas & duplex, immeubles R+2 à R+4, bureaux/showrooms, rénovations lourdes.</p>
+              <p><strong>Livrables :</strong> métrés détaillés, plans d'exécution, planning jalonné, fiches de contrôle par lot, DOE.</p>
+              <p><strong>Ce que vous gagnez :</strong> finitions maîtrisées, délais tenus, un interlocuteur unique, livraison sans surprise.</p>
+              <ul className="mt-2 space-y-1 list-disc list-inside">
+                <li>Résidentiel (neuf & réhabilitation)</li>
+                <li>Tertiaire/industriel (aménagements, carrelage technique, cloisons, second œuvre)</li>
+                <li>Rénovation & mise aux normes</li>
+              </ul>
+            </div>
           </article>
 
-          {/* 2) Fourniture & Pose */}
+          {/* 2) Génie civil & VRD */}
           <article 
             className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
               servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
             style={{ transitionDelay: '400ms' }}
           >
-            <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
-              2
+            <div className="mb-3 flex items-center gap-3">
+              <div className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 font-semibold text-sm sm:text-base">
+                2
+              </div>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-700">
+                Génie civil &amp; VRD
+              </h2>
             </div>
-            <h2 className="text-base sm:text-lg font-semibold text-slate-900">
-              Fourniture &amp; Pose
-            </h2>
-            <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
-              <li>Carrelage/sols (intérieur/extérieur), faïence, pierres</li>
-              <li>Menuiseries (bois, alu, PVC), portes, baies, verrières</li>
-              <li>
-                Sanitaires &amp; plomberie (distribution, évacuation,
-                chauffe-eau)
-              </li>
-              <li>Électricité (tableaux, câblage, luminaires, conformité)</li>
-              <li>Peinture, enduits décoratifs, plafonds, staff</li>
-            </ul>
+            <div className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base text-slate-700">
+              <p><strong>Périmètre :</strong> dalles & fondations, voiries & parkings, réseaux (EU/EP, électricité), drainage.</p>
+              <p><strong>Livrables :</strong> notes de calcul, plans de ferraillage, coupes VRD, protocoles HSE, essais béton/sols.</p>
+              <p><strong>Ce que vous gagnez :</strong> ouvrages durables, gestion des eaux pluviales, accès sécurisés, conformité.</p>
+              <ul className="mt-2 space-y-1 list-disc list-inside">
+                <li>Plateformes et ouvrages de structure</li>
+                <li>VRD complets (terrassements, réseaux, finitions de surface)</li>
+                <li>Tests & contrôles (planéité, portance, étanchéité)</li>
+              </ul>
+            </div>
           </article>
 
-          {/* 3) Rénovation | Réhabilitation */}
+          {/* 3) Clé en main & Pilotage */}
           <article 
             className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
               servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
             style={{ transitionDelay: '600ms' }}
           >
-            <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
-              3
+            <div className="mb-3 flex items-center gap-3">
+              <div className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 font-semibold text-sm sm:text-base">
+                3
+              </div>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-700">
+                Clé en main &amp; Pilotage
+              </h2>
             </div>
-            <h2 className="text-base sm:text-lg font-semibold text-slate-900">
-              Rénovation | Réhabilitation
-            </h2>
-            <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
-              <li>Remise à niveau structurelle et technique</li>
-              <li>Réaménagement intérieur, isolation, confort thermique</li>
-              <li>Mises aux normes, diagnostics, finitions complètes</li>
-            </ul>
+            <div className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base text-slate-700">
+              <p><strong>Périmètre :</strong> contractant général (prix global & forfaitaire), OPC, lots techniques (élec/plomberie/CVC), fourniture & pose, maintenance/SAV.</p>
+              <p><strong>Livrables :</strong> planning Gantt, compte-rendu hebdo, registre des points ouverts, schémas unifilaires & plans réseaux, fiches essais/mesures, garanties fabricants.</p>
+              <p><strong>Ce que vous gagnez :</strong> décision rapide, traçabilité complète, un seul responsable du résultat, continuité d'activité.</p>
+              <div className="mt-2">
+                <p className="font-medium mb-1">Inclut :</p>
+                <ul className="space-y-1 list-disc list-inside">
+                  <li>Contractant général & coordination des corps</li>
+                  <li>Fourniture & pose (revêtements, menuiseries, sanitaires, appareillages)</li>
+                </ul>
+              </div>
+            </div>
           </article>
         </div>
 
