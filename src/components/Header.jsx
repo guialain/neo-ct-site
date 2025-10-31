@@ -6,7 +6,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Fermer le menu mobile lors d'un changement de page
+  // Fermer le menu mobile lors du changement de page
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
@@ -30,10 +30,9 @@ export default function Header() {
 
   return (
     <>
-      {/* sticky (pas fixed) pour éviter d'ajouter du padding-top au main */}
-      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-orange-200/60 shadow-sm">
+      <header className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur border-b border-orange-200/60 shadow-sm">
         <div className="mx-auto max-w-7xl px-3 sm:px-4 py-2 md:py-2.5 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo responsive */}
           <a href="/" className="flex items-center gap-2 shrink-0">
             <img
               src="/logo-neoct.jpg"
@@ -46,19 +45,48 @@ export default function Header() {
 
           {/* Menu desktop */}
           <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
-            <NavLink to="/" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `${linkBase} ${isActive ? linkActive : ""}`
+              }
+            >
               Accueil
             </NavLink>
-            <NavLink to="/about" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `${linkBase} ${isActive ? linkActive : ""}`
+              }
+            >
               À propos
             </NavLink>
-            <NavLink to="/realisations" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}>
+
+            <NavLink
+              to="/realisations"
+              className={({ isActive }) =>
+                `${linkBase} ${isActive ? linkActive : ""}`
+              }
+            >
               Réalisations
             </NavLink>
-            <NavLink to="/services" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}>
+
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                `${linkBase} ${isActive ? linkActive : ""}`
+              }
+            >
               Services
             </NavLink>
-            <NavLink to="/team" className={({ isActive }) => `${linkBase} ${isActive ? linkActive : ""}`}>
+
+            <NavLink
+              to="/team"
+              className={({ isActive }) =>
+                `${linkBase} ${isActive ? linkActive : ""}`
+              }
+            >
               Équipe
             </NavLink>
 
@@ -72,35 +100,45 @@ export default function Header() {
 
           {/* Bouton burger mobile */}
           <button
-            onClick={() => setMobileMenuOpen((v) => !v)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-slate-100 transition-colors"
             aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           >
             {mobileMenuOpen ? (
               <svg width="24" height="24" viewBox="0 0 24 24" className="text-slate-700">
-                <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path
+                  d="M6 18L18 6M6 6l12 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             ) : (
               <svg width="24" height="24" viewBox="0 0 24 24" className="text-slate-700">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             )}
           </button>
         </div>
       </header>
 
-      {/* Menu mobile */}
+      {/* Menu mobile - Sidebar overlay */}
       {mobileMenuOpen && (
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40 md:hidden"
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40 md:hidden animate-fadeIn"
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          {/* Sidebar glass */}
-          <nav className="fixed top-0 right-0 bottom-0 w-80 bg-white/95 backdrop-blur-xl shadow-2xl z-50 md:hidden overflow-y-auto">
-            <div className="p-5 border-b border-orange-200/50 flex items-center justify-between bg-gradient-to-r from-orange-600/10 to-orange-500/10">
+          {/* Sidebar avec glassmorphism */}
+          <nav className="fixed top-0 right-0 bottom-0 w-80 bg-white/95 backdrop-blur-xl shadow-2xl z-50 md:hidden overflow-y-auto animate-slide-in-right">
+            <div className="p-5 border-b border-orange-200/50 flex items-center justify-between backdrop-blur-sm bg-gradient-to-r from-orange-600/10 to-orange-500/10">
               <span className="font-bold text-lg text-slate-900">Navigation</span>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -108,33 +146,81 @@ export default function Header() {
                 aria-label="Fermer le menu"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" className="text-orange-700">
-                  <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  <path
+                    d="M6 18L18 6M6 6l12 12"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </div>
 
             <div className="p-5 space-y-2">
-              {[
-                { to: "/", label: "Accueil" },
-                { to: "/about", label: "À propos" },
-                { to: "/realisations", label: "Réalisations" },
-                { to: "/services", label: "Services" },
-                { to: "/team", label: "Équipe" },
-              ].map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `block px-4 py-3.5 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
-                      isActive
-                        ? "bg-orange-100 border border-orange-300 text-orange-700 shadow-sm"
-                        : "text-slate-700 hover:bg-orange-50 hover:text-orange-700"
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `block px-4 py-3.5 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                    isActive 
+                      ? "bg-orange-100 border border-orange-300 text-orange-700 shadow-sm" 
+                      : "text-slate-700 hover:bg-orange-50 hover:text-orange-700"
+                  }`
+                }
+              >
+                Accueil
+              </NavLink>
+
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `block px-4 py-3.5 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                    isActive 
+                      ? "bg-orange-100 border border-orange-300 text-orange-700 shadow-sm" 
+                      : "text-slate-700 hover:bg-orange-50 hover:text-orange-700"
+                  }`
+                }
+              >
+                À propos
+              </NavLink>
+
+              <NavLink
+                to="/realisations"
+                className={({ isActive }) =>
+                  `block px-4 py-3.5 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                    isActive 
+                      ? "bg-orange-100 border border-orange-300 text-orange-700 shadow-sm" 
+                      : "text-slate-700 hover:bg-orange-50 hover:text-orange-700"
+                  }`
+                }
+              >
+                Réalisations
+              </NavLink>
+
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  `block px-4 py-3.5 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                    isActive 
+                      ? "bg-orange-100 border border-orange-300 text-orange-700 shadow-sm" 
+                      : "text-slate-700 hover:bg-orange-50 hover:text-orange-700"
+                  }`
+                }
+              >
+                Services
+              </NavLink>
+
+              <NavLink
+                to="/team"
+                className={({ isActive }) =>
+                  `block px-4 py-3.5 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                    isActive 
+                      ? "bg-orange-100 border border-orange-300 text-orange-700 shadow-sm" 
+                      : "text-slate-700 hover:bg-orange-50 hover:text-orange-700"
+                  }`
+                }
+              >
+                Équipe
+              </NavLink>
 
               <div className="pt-4 mt-4">
                 <NavLink

@@ -20,6 +20,7 @@ const TEAM = [
     resumeText:
       "Diplômé d’un Master en Management (SKEMA) et Ingénieur en statistiques et économie appliquée (ENSEA), Gui Alain BAHIBO a construit une solide connaissance de l’entreprise au fil de 17 années en corporate banking entre la Côte d’Ivoire, Londres et la région africaine. Chez Standard Chartered, Société Générale, Ecobank puis BACB, il a progressivement relié l’analyse du risque, la relation client et la structuration de financements pour des acteurs publics et privés. Cette trajectoire lui a appris à clarifier les besoins, orchestrer des équipes et transformer des contraintes complexes en solutions exécutables. NEO CT est né de cette exigence et d’une inspiration puisée chez de grands bâtisseurs du secteur privé : donner une forme durable à l’ambition des clients en conciliant qualité, délais et maîtrise des coûts, avec la même rigueur que dans la banque."
   },
+
   {
     id: "guiro",
     name: "Ben Alvine GUIRO",
@@ -30,6 +31,7 @@ const TEAM = [
     resumeText:
       "Sur plan comme sur chantier, Ben Alvine GUIRO parle la langue des détails. Il aime quand un croquis devient un calendrier, puis un ouvrage livré, propre et sécurisé. De la préparation d’exécution à la coordination multi-lots, il aligne bureaux d’études, entreprises et contrôle technique avec une exigence constante : zéro surprise à la réception. Sa marque de fabrique : anticiper les risques, fluidifier la communication et tenir le triptyque qualité–coûts–délais. Résultat : des chantiers qui avancent, des clients rassurés et des clés remises avec fierté."
   },
+
   {
     id: "guilahou",
     name: "Marcel Olivier GUILAHOU",
@@ -40,6 +42,7 @@ const TEAM = [
     resumeText:
       "GUILAHOU GBEHE Marcel Olivier bénéficie de plus de dix années d’expérience en développement commercial entre la Côte d’Ivoire et le Ghana. En Côte d’Ivoire, il débute dans la distribution de matériaux de construction chez ABC Services, où il apprend le terrain : cycle commande–livraison, gestion des marges, qualité de service. À Accra, il poursuit chez GREYTONE Construction Ltd comme chargé de portefeuille pendant trois ans, reliant plus étroitement besoin client, proposition technique et exécution. Il prend ensuite la gérance d’Ezo Building Construction Company pendant cinq ans, structurant l’activité et renforçant les relations avec les maîtres d’ouvrage. En 2020, il rejoint SDTS, aujourd’hui au service du développement de NEO CT, avec une approche constante : comprendre précisément, calibrer justement et accompagner jusqu’à la réception. Diplômé en 2009 d’Ingénieur en Finance et Marketing (spécialisation gestion de projets, analyse financière, stratégies de marché), il met sa connaissance des cycles BTP et sa culture client au profit de partenariats durables."
   },
+
   {
     id: "zouho",
     name: "Mea Armond ZOUHO",
@@ -60,9 +63,9 @@ function ResumeModal({ open, onClose, member }) {
 
   return (
     <div className="fixed inset-0 z-50 animate-fadeIn">
-      <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-md"
-        onClick={onClose}
+      <div 
+        className="absolute inset-0 bg-black/70 backdrop-blur-md" 
+        onClick={onClose} 
       />
       <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
         <div className="w-full max-w-2xl max-h-[90vh] rounded-2xl bg-white shadow-2xl overflow-hidden flex flex-col transform transition-all">
@@ -97,15 +100,11 @@ function ResumeModal({ open, onClose, member }) {
               ) : hasBullets ? (
                 <ul className="list-disc pl-4 sm:pl-5 space-y-2 text-sm sm:text-base text-slate-700">
                   {member.resume.map((b, i) => (
-                    <li key={i} className="leading-relaxed">
-                      {b}
-                    </li>
+                    <li key={i} className="leading-relaxed">{b}</li>
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
-                  {member.summary}
-                </p>
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">{member.summary}</p>
               )}
             </div>
           </div>
@@ -133,12 +132,8 @@ export default function TeamPage() {
     <main className="bg-white">
       {/* En-tête */}
       <section className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 border-b border-slate-200">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
-          Notre Équipe
-        </h1>
-        <p className="mt-2 text-sm sm:text-base text-slate-600">
-          Des professionnels engagés pour vos projets
-        </p>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">Notre Équipe</h1>
+        <p className="mt-2 text-sm sm:text-base text-slate-600">Des professionnels engagés pour vos projets</p>
       </section>
 
       {/* Grille */}
@@ -147,7 +142,7 @@ export default function TeamPage() {
           {TEAM.map((m, index) => (
             <article
               key={m.id}
-              className="group h-full rounded-xl sm:rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:shadow-blue-100 hover:-translate-y-2 transition-all duration-500 animate-fade-in-up"
+              className="group h-full rounded-xl sm:rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:shadow-blue-100 hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="aspect-[4/4] overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-slate-100 relative">
@@ -164,12 +159,8 @@ export default function TeamPage() {
                 <h3 className="text-base sm:text-lg font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">
                   {m.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-blue-700 font-medium mt-0.5">
-                  {m.role}
-                </p>
-                <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-600 line-clamp-3">
-                  {m.summary}
-                </p>
+                <p className="text-xs sm:text-sm text-blue-700 font-medium mt-0.5">{m.role}</p>
+                <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-600 line-clamp-3">{m.summary}</p>
 
                 {/* Bouton: En savoir plus */}
                 <div className="mt-3 sm:mt-4">
@@ -188,7 +179,11 @@ export default function TeamPage() {
       </section>
 
       {/* Modal */}
-      <ResumeModal open={Boolean(openId)} onClose={() => setOpenId(null)} member={current} />
+      <ResumeModal
+        open={Boolean(openId)}
+        onClose={() => setOpenId(null)}
+        member={current}
+      />
     </main>
   );
 }

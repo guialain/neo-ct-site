@@ -89,6 +89,7 @@ export default function InlineCarousel({ items = [], className = "", aspect = "v
                   src={m.src}
                   className="h-full w-full object-cover"
                   playsInline
+                  muted
                   controls
                 />
               )}

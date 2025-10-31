@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Outlet, Link, useLocation } from "react-router-dom";
 
 // Layout
 import Header from "./components/Header.jsx";
@@ -15,11 +15,13 @@ import Team from "./pages/Team.jsx";
 import Contact from "./pages/Contact.jsx";
 
 function SiteLayout() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
-    <div className="min-h-dvh flex flex-col bg-gradient-to-br from-blue-50 via-slate-50 to-white overflow-x-hidden w-full">
+    <div className="min-h-dvh flex flex-col bg-white overflow-x-hidden w-full">
       <Header />
-      {/* Padding top pour ne pas passer sous le header sticky */}
-      <main className="flex-1 w-full overflow-x-hidden pt-14 sm:pt-16 md:pt-[72px] lg:pt-24">
+      <main className="flex-1 w-full overflow-x-hidden pt-14 sm:pt-16 md:pt-[88px] lg:pt-[100px]">
         <Outlet />
       </main>
       <Footer showBackground={true} />

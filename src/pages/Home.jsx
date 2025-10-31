@@ -19,16 +19,21 @@ function useInView(options = {}) {
       }
     }, { threshold: 0.1, ...options });
 
-    if (ref.current) observer.observe(ref.current);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
     return () => observer.disconnect();
   }, []);
 
   return [ref, isInView];
 }
 
-// Médias du héros
+// Image fixe du héros (retirée du carousel)
+const HERO_STATIC_IMAGE = { type: "image", src: "/media/hero/equipe-neoct.jpg", alt: "Équipe NEO CT" };
+
+// Médias du héros (carousel)
 const MEDIA = [
-  { type: "image", src: "/media/hero/equipe-neoct.jpg", alt: "Équipe NEO CT" },
   { type: "image", src: "/media/hero/villas-boreflet.jpg", alt: "villas boreflet" },
   { type: "image", src: "/media/hero/facade3D-perles.jpg", alt: "facade3D Perles" },
   { type: "video", src: "/media/hero/coulage-dalle-perles.mp4", poster: "/media/hero/coulage-dalle-perles.jpg", alt: "Dalle Villa Perles" },
@@ -45,6 +50,9 @@ const PROJECTS = [
     subtitle: "Villa haut standing – clé en main",
     location: "Riviera • 2022",
     media: [
+      { type: "image", src: "/real/villa-perles/IMG_8143.JPEG" },
+      { type: "image", src: "/real/villa-perles/IMG_8152.JPEG" },
+      { type: "image", src: "/real/villa-perles/perles-photo1.jpg" },
       { type: "video", src: "/real/villa-perles/perles-video1.mp4" },
       { type: "video", src: "/real/villa-perles/perles-video2.mp4" },
       { type: "video", src: "/real/villa-perles/perles-video3.mp4" },
@@ -57,9 +65,9 @@ const PROJECTS = [
     location: "Cocody • 2024",
     media: [
       { type: "image", src: "/real/ahoue/1.jpg" },
-      { type: "image", src: "/real/ahoue/2.jpg" },
+      { type: "image", src: "/real/ahoue/2.JPEG" },
       { type: "image", src: "/real/ahoue/3.jpg" },
-      { type: "video", src: "/real/ahoue/chantier.mp4" },
+      { type: "image", src: "/real/ahoue/4.JPEG" },
     ],
   },
   {
@@ -68,9 +76,11 @@ const PROJECTS = [
     subtitle: "Construction Gros Oeuvre de 24 Villas",
     location: "Cocody • Angre",
     media: [
-      { type: "image", src: "/real/bo-reflets/bo-reflets1.jpg" },
-      { type: "image", src: "/real/bo-reflets/2.jpg" },
-      { type: "video", src: "/real/bo-reflets/visite.mp4" },
+      { type: "image", src: "/real/bo-reflets/1.JPEG" },
+      { type: "image", src: "/real/bo-reflets/2.JPEG" },
+      { type: "image", src: "/real/bo-reflets/3.jpg" },
+      { type: "image", src: "/real/bo-reflets/4.JPEG" },
+      { type: "image", src: "/real/bo-reflets/5.jpeg" },
     ],
   },
   {
@@ -79,9 +89,9 @@ const PROJECTS = [
     subtitle: "Bâtiment tertiaire – R+2",
     location: "Marcory • 2023",
     media: [
-      { type: "image", src: "/real/bo-real/1.jpg" },
-      { type: "image", src: "/real/bo-real/2.jpg" },
-      { type: "image", src: "/real/bo-real/3.jpg" },
+      { type: "image", src: "/real/bo-real/1.JPEG" },
+      { type: "image", src: "/real/bo-real/2.JPEG" },
+      { type: "image", src: "/real/bo-real/3.JPEG" },
     ],
   },
   {
@@ -90,9 +100,10 @@ const PROJECTS = [
     subtitle: "Extension & réhabilitation",
     location: "Attoban • 2022",
     media: [
-      { type: "image", src: "/real/r1-attoban/1.jpg" },
-      { type: "image", src: "/real/r1-attoban/2.jpg" },
-      { type: "video", src: "/real/r1-attoban/timelapse.mp4" },
+      { type: "image", src: "/real/r1-attoban/1.JPEG" },
+      { type: "image", src: "/real/r1-attoban/2.JPEG" },
+      { type: "image", src: "/real/r1-attoban/3.JPEG" },
+      { type: "image", src: "/real/r1-attoban/4.JPEG" },
     ],
   },
   {
@@ -101,10 +112,10 @@ const PROJECTS = [
     subtitle: "Immeuble d'habitation – travaux TCE",
     location: "Angré • 2021",
     media: [
+      { type: "image", src: "/real/r3-attessa/1.JPEG" },
+      { type: "image", src: "/real/r3-attessa/2.JPEG" },
+      { type: "image", src: "/real/r3-attessa/3.JPEG" },
       { type: "video", src: "/real/r3-attessa/r3-attessa-coulage.mp4" },
-      { type: "image", src: "/real/r3-attessa/2.jpg" },
-      { type: "image", src: "/real/r3-attessa/3.jpg" },
-      { type: "video", src: "/real/r3-attessa/overview.mp4" },
     ],
   },
 ];
@@ -159,9 +170,9 @@ function ResumeModal({ open, onClose, member }) {
 
   return (
     <div className="fixed inset-0 z-50 animate-fadeIn">
-      <div
-        className="absolute inset-0 bg-black/70 backdrop-blur-md"
-        onClick={onClose}
+      <div 
+        className="absolute inset-0 bg-black/70 backdrop-blur-md" 
+        onClick={onClose} 
       />
       <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
         <div className="w-full max-w-2xl max-h-[90vh] rounded-2xl bg-white shadow-2xl overflow-hidden flex flex-col transform transition-all">
@@ -223,14 +234,20 @@ export default function Home() {
   const [teamRef, teamInView] = useInView();
   const [contactRef, contactInView] = useInView();
 
-  // Bouton "Retour en haut"
+  // Gérer l'affichage du bouton "Retour en haut"
   useEffect(() => {
-    const handleScroll = () => setShowScrollTop(window.scrollY > 400);
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  // Fonction pour remonter en haut
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   // --- SEO (URL / images OG) ---
   const site = "https://www.neoct.ci";
@@ -282,7 +299,9 @@ export default function Home() {
         (tel ? `Téléphone: ${tel}\n` : "") +
         `\nMessage:\n${message}\n`;
 
-      const mailto = `mailto:${email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(body)}`;
+      const mailto = `mailto:${email}?subject=${encodeURIComponent(
+        sujet
+      )}&body=${encodeURIComponent(body)}`;
       window.location.href = mailto;
     },
     [email]
@@ -354,7 +373,7 @@ export default function Home() {
 
       <main className="bg-white overflow-x-hidden">
         {/* ===== HÉRO ENCADRÉ ===== */}
-        <section
+        <section 
           ref={heroRef}
           className={`mx-auto max-w-7xl px-3 sm:px-4 pt-3 pb-6 sm:pt-4 sm:pb-8 lg:pt-6 lg:pb-12 w-full transition-all duration-1000 ${
             heroInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -362,7 +381,7 @@ export default function Home() {
         >
           <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white/85 shadow-md backdrop-blur supports-[backdrop-filter]:bg-white/70 w-full">
             <div className="grid items-start gap-4 sm:gap-6 md:gap-8 lg:gap-10 md:grid-cols-12 p-3 sm:p-4 md:p-6 lg:p-8 w-full">
-              {/* TEXTE */}
+              {/* TEXTE (6/12) */}
               <div className="order-2 md:order-1 md:col-span-6 w-full min-w-0">
                 <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 break-words">
                   NEO CONSTRUCTION & TRAVAUX
@@ -435,12 +454,24 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* MEDIA */}
-              <div className="order-1 md:order-2 md:col-span-6 w-full min-w-0">
+              {/* MEDIA (6/12) */}
+              <div className="order-1 md:order-2 md:col-span-6 w-full min-w-0 space-y-4">
+                {/* Carousel */}
                 <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-sm ring-1 ring-slate-200/60 h-[35vh] sm:h-[44vh] md:h-auto w-full">
                   <div className="h-full w-full [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_video]:h-full [&_video]:w-full [&_video]:object-cover">
                     <HeroCarousel items={MEDIA} autoPlay interval={5000} />
                   </div>
+                </div>
+
+                {/* Image fixe en dessous (visible uniquement sur desktop) */}
+                <div className="hidden md:block rounded-xl sm:rounded-2xl overflow-hidden shadow-sm ring-1 ring-slate-200/60">
+                  <img 
+                    src={HERO_STATIC_IMAGE.src} 
+                    alt={HERO_STATIC_IMAGE.alt}
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -448,25 +479,31 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION SERVICES ===== */}
-        <section
-          id="services"
+        <section 
+          id="services" 
           ref={servicesRef}
           className="bg-gradient-to-b from-slate-50 to-white"
         >
           <div className="mx-auto max-w-7xl px-3 sm:px-4 py-6 sm:py-8 md:py-10 lg:py-12">
-            <div className={`max-w-3xl text-left mb-8 sm:mb-10 transition-all duration-1000 ${
+            <div className={`relative mx-auto max-w-3xl text-center mb-8 sm:mb-10 transition-all duration-1000 ${
               servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-              <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-blue-700">
-                Nos services
-              </p>
-              <h2 className="mt-2 text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight">
-                Un interlocuteur unique, du plan à la livraison
-              </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-                Nous pilotons votre chantier de A à Z : études, exécution, finitions,
-                coordination des corps d'état et réception.
-              </p>
+              {/* Texte géant en arrière-plan */}
+              <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-hidden">
+                <span className="text-[80px] sm:text-[120px] md:text-[150px] lg:text-[180px] font-black text-slate-100 opacity-40 whitespace-nowrap select-none">
+                  SERVICES
+                </span>
+              </div>
+
+              {/* Contenu */}
+              <div className="relative z-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight uppercase text-slate-900">
+                  Nos services
+                </h2>
+                <p className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-slate-900 font-semibold">
+                  Un interlocuteur unique, du plan à la livraison
+                </p>
+              </div>
             </div>
 
             {/* Services grid */}
@@ -474,7 +511,9 @@ export default function Home() {
               {/* 1) Construction clé en main */}
               <article className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
                 servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`} style={{ transitionDelay: '200ms' }}>
+              }`}
+              style={{ transitionDelay: '200ms' }}
+              >
                 <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
                   1
                 </div>
@@ -483,10 +522,22 @@ export default function Home() {
                 </h3>
                 <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
                   <li>Études d'exécution, implantation et terrassement</li>
-                  <li><span className="font-medium">Gros œuvre</span> : fondations, voiles/dalles BA, murs porteurs</li>
-                  <li><span className="font-medium">Second œuvre</span> : maçonnerie, cloisons, chapes, escaliers</li>
-                  <li><span className="font-medium">Étanchéité & couverture</span> : toitures, terrasses, évacuations</li>
-                  <li><span className="font-medium">VRD</span> : réseaux, drainage, voiries/parkings</li>
+                  <li>
+                    <span className="font-medium">Gros œuvre</span> : fondations,
+                    voiles/dalles BA, murs porteurs
+                  </li>
+                  <li>
+                    <span className="font-medium">Second œuvre</span> : maçonnerie,
+                    cloisons, chapes, escaliers
+                  </li>
+                  <li>
+                    <span className="font-medium">Étanchéité & couverture</span> :
+                    toitures, terrasses, évacuations
+                  </li>
+                  <li>
+                    <span className="font-medium">VRD</span> : réseaux, drainage,
+                    voiries/parkings
+                  </li>
                   <li>Coordination des corps d'état, réception de chantier</li>
                 </ul>
               </article>
@@ -494,7 +545,9 @@ export default function Home() {
               {/* 2) Fourniture & Pose */}
               <article className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
                 servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`} style={{ transitionDelay: '400ms' }}>
+              }`}
+              style={{ transitionDelay: '400ms' }}
+              >
                 <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
                   2
                 </div>
@@ -504,7 +557,10 @@ export default function Home() {
                 <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
                   <li>Carrelage/sols (intérieur/extérieur), faïence, pierres</li>
                   <li>Menuiseries (bois, alu, PVC), portes, baies, verrières</li>
-                  <li>Sanitaires &amp; plomberie (distribution, évacuation, chauffe-eau)</li>
+                  <li>
+                    Sanitaires &amp; plomberie (distribution, évacuation,
+                    chauffe-eau)
+                  </li>
                   <li>Électricité (tableaux, câblage, luminaires, conformité)</li>
                   <li>Peinture, enduits décoratifs, plafonds, staff</li>
                 </ul>
@@ -513,7 +569,9 @@ export default function Home() {
               {/* 3) Rénovation | Réhabilitation */}
               <article className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
                 servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`} style={{ transitionDelay: '600ms' }}>
+              }`}
+              style={{ transitionDelay: '600ms' }}
+              >
                 <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
                   3
                 </div>
@@ -533,6 +591,7 @@ export default function Home() {
               <h3 className="text-base sm:text-lg font-semibold text-slate-900 text-center mb-4">
                 Process en 5 étapes
               </h3>
+
               <ol className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-5 items-start">
                 {[
                   "Prise de brief & visite",
@@ -541,7 +600,10 @@ export default function Home() {
                   "Exécution & contrôle",
                   "Réception & garanties",
                 ].map((step, i) => (
-                  <li key={i} className="flex items-center gap-3 sm:gap-4">
+                  <li
+                    key={i}
+                    className="flex items-center gap-3 sm:gap-4"
+                  >
                     <span className="text-3xl sm:text-4xl md:text-5xl font-black text-orange-600 leading-none">
                       0{i + 1}
                     </span>
@@ -558,18 +620,27 @@ export default function Home() {
 
         {/* ===== SECTION IMAGE DÉCORATIVE ===== */}
         <section className="relative h-[250px] sm:h-[350px] md:h-[450px] overflow-hidden">
-          <div
+          {/* Image de fond - effet parallax désactivé sur mobile, activé sur desktop */}
+          <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat md:bg-fixed"
-            style={{ backgroundImage: 'url(/section-bg.jpg)', backgroundPosition: 'center' }}
+            style={{
+              backgroundImage: 'url(/section-bg.jpg)',
+              backgroundPosition: 'center',
+            }}
           >
+            {/* Overlay sombre pour améliorer la lisibilité */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/30"></div>
           </div>
-          <div className="relative z-10 h-full flex items-center justify-center px-4" />
+          
+          {/* Contenu optionnel */}
+          <div className="relative z-10 h-full flex items-center justify-center px-4">
+            {/* Vous pouvez ajouter du contenu ici si nécessaire */}
+          </div>
         </section>
 
         {/* ===== SECTION RÉALISATIONS ===== */}
-        <section
-          id="realisations"
+        <section 
+          id="realisations" 
           ref={realisationsRef}
           className="bg-white border-y border-slate-200"
         >
@@ -577,11 +648,14 @@ export default function Home() {
             <div className={`relative mx-auto max-w-3xl text-center mb-8 sm:mb-10 transition-all duration-1000 ${
               realisationsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
+              {/* Texte géant en arrière-plan */}
               <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-hidden">
                 <span className="text-[80px] sm:text-[120px] md:text-[150px] lg:text-[180px] font-black text-slate-100 opacity-40 whitespace-nowrap select-none">
                   REALISATIONS
                 </span>
               </div>
+
+              {/* Contenu */}
               <div className="relative z-10">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight uppercase text-slate-900">
                   Nos réalisations
@@ -592,17 +666,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Mobile : 3 projets */}
+            {/* Version mobile : 3 projets */}
             <div className="grid gap-4 grid-cols-1 sm:hidden">
               {PROJECTS.slice(0, 3).map((p, index) => (
-                <article
-                  key={p.id}
+                <article 
+                  key={p.id} 
                   className={`rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 overflow-hidden ${
                     realisationsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <InlineCarousel items={p.media} aspect="video" />
+
                   <div className="px-3 py-2">
                     <div className="flex items-center gap-2 text-xs">
                       <h3 className="font-bold text-slate-900 truncate">{p.title}</h3>
@@ -616,17 +691,18 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Desktop : 4 projets */}
+            {/* Version desktop : 4 projets */}
             <div className="hidden sm:grid gap-4 sm:gap-5 md:gap-6 sm:grid-cols-2">
               {PROJECTS.slice(0, 4).map((p, index) => (
-                <article
-                  key={p.id}
+                <article 
+                  key={p.id} 
                   className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 overflow-hidden ${
                     realisationsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <InlineCarousel items={p.media} aspect="video" />
+
                   <div className="px-3 py-2 sm:px-4 sm:py-2.5">
                     <div className="flex items-center gap-2 text-xs sm:text-sm">
                       <h3 className="font-bold text-slate-900 truncate">{p.title}</h3>
@@ -652,8 +728,8 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION À PROPOS ===== */}
-        <section
-          id="apropos"
+        <section 
+          id="apropos" 
           ref={aboutRef}
           className="bg-gradient-to-b from-slate-50 to-white"
         >
@@ -661,11 +737,14 @@ export default function Home() {
             <div className={`relative mx-auto max-w-3xl text-center mb-8 sm:mb-10 transition-all duration-1000 delay-100 ${
               aboutInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
+              {/* Texte géant en arrière-plan */}
               <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-hidden">
                 <span className="text-[80px] sm:text-[120px] md:text-[150px] lg:text-[180px] font-black text-slate-100 opacity-40 whitespace-nowrap select-none">
                   APROPOS
                 </span>
               </div>
+ 
+              {/* Contenu */}
               <div className="relative z-10">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight uppercase text-slate-900">
                   À propos
@@ -720,8 +799,8 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION ÉQUIPE ===== */}
-        <section
-          id="equipe"
+        <section 
+          id="equipe" 
           ref={teamRef}
           className="bg-white border-y border-slate-200"
         >
@@ -729,12 +808,14 @@ export default function Home() {
             <div className={`relative mx-auto max-w-3xl text-center mb-8 sm:mb-10 transition-all duration-1000 ${
               teamInView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
+              {/* Texte géant en arrière-plan */}
               <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-hidden">
                 <span className="text-[80px] sm:text-[120px] md:text-[150px] lg:text-[180px] font-black text-slate-100 opacity-40 whitespace-nowrap select-none">
                   EQUIPE
                 </span>
               </div>
 
+              {/* Contenu */}
               <div className="relative z-10">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight uppercase text-slate-900">
                   Notre équipe
@@ -745,7 +826,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Scroll horizontal mobile */}
+            {/* Scroll horizontal sur mobile, grille sur desktop */}
             <div className="sm:hidden -mx-3 px-3">
               <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin">
                 {TEAM.map((m, index) => (
@@ -786,12 +867,13 @@ export default function Home() {
                   </article>
                 ))}
               </div>
+              {/* Indicateur de scroll */}
               <p className="text-center text-xs text-slate-500 mt-2">
                 ← Faites défiler pour voir tous les membres →
               </p>
             </div>
 
-            {/* Grille desktop */}
+            {/* Grille classique pour tablette et desktop */}
             <div className="hidden sm:grid gap-4 sm:gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {TEAM.map((m, index) => (
                 <article
@@ -835,8 +917,8 @@ export default function Home() {
         </section>
 
         {/* ===== SECTION CONTACT ===== */}
-        <section
-          id="contact"
+        <section 
+          id="contact" 
           ref={contactRef}
           className="bg-gradient-to-b from-slate-50 to-white"
         >
@@ -844,11 +926,14 @@ export default function Home() {
             <div className={`relative mx-auto max-w-3xl text-center mb-8 sm:mb-10 transition-all duration-1000 ${
               contactInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
+              {/* Texte géant en arrière-plan */}
               <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none overflow-hidden">
                 <span className="text-[80px] sm:text-[120px] md:text-[150px] lg:text-[180px] font-black text-slate-100 opacity-40 whitespace-nowrap select-none">
                   CONTACT
                 </span>
               </div>
+
+              {/* Contenu */}
               <div className="relative z-10">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight uppercase text-slate-900">
                   Contact
@@ -967,7 +1052,7 @@ export default function Home() {
                         name="tel"
                         autoComplete="tel"
                         inputMode="tel"
-                        pattern="[0-9+\\s()-]*"
+                        pattern="[0-9+\s()-]*"
                         className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm sm:text-base outline-none ring-0 focus:border-slate-400 transition"
                         placeholder="+225 …"
                       />

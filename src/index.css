@@ -30,20 +30,15 @@
 
   /* Amélioration du rendu sur mobile */
   @media (max-width: 640px) {
-    body { font-size: 14px; }
+    body {
+      font-size: 14px;
+    }
   }
 
   /* Support pour les très petits écrans */
   @media (min-width: 475px) {
-    body { font-size: 15px; }
-  }
-
-  /* Réduire les animations si l’utilisateur préfère moins de mouvement */
-  @media (prefers-reduced-motion: reduce) {
-    * {
-      animation: none !important;
-      transition: none !important;
-      scroll-behavior: auto !important;
+    body {
+      font-size: 15px;
     }
   }
 }
@@ -58,77 +53,179 @@
   animation: partners-scroll-x 28s linear infinite;
   will-change: transform;
 }
-.partners-marquee:hover { animation-play-state: paused; }
+
+.partners-marquee:hover {
+  animation-play-state: paused;
+}
 
 /* === Animations ========================================================= */
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in-left {
-  from { opacity: 0; transform: translateX(-30px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slide-in-right {
-  from { opacity: 0; transform: translateX(30px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes scale-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes bounce-in {
-  0%   { opacity: 0; transform: scale(0.3); }
-  50%  { transform: scale(1.05); }
-  70%  { transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-  50%      { box-shadow: 0 0 30px rgba(59, 130, 246, 0.8); }
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-10px); }
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* === Utilities ========================================================= */
 @layer utilities {
   /* Animations */
-  .animate-fade-in-up    { animation: fade-in-up 0.6s ease-out forwards; opacity: 0; }
-  .animate-fade-in       { animation: fade-in 0.6s ease-out forwards; opacity: 0; }
-  .animate-slide-in-left { animation: slide-in-left 0.6s ease-out forwards; opacity: 0; }
-  .animate-slide-in-right{ animation: slide-in-right 0.6s ease-out forwards; opacity: 0; }
-  .animate-scale-in      { animation: scale-in 0.6s ease-out forwards; opacity: 0; }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
 
-  .animate-bounce-in { animation: bounce-in 0.8s cubic-bezier(0.68,-0.55,0.265,1.55) forwards; opacity: 0; }
-  .animate-pulse-glow{ animation: pulse-glow 2s ease-in-out infinite; }
-  .animate-float     { animation: float 3s ease-in-out infinite; }
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+    opacity: 0;
+  }
 
-  /* Support line-clamp (1..3) */
-  .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-  .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .animate-slide-in-left {
+    animation: slide-in-left 0.6s ease-out forwards;
+    opacity: 0;
+  }
 
-  /* Scrollbar personnalisé */
-  .scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
-  .scrollbar-thin::-webkit-scrollbar-track { @apply bg-slate-100 rounded; }
-  .scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded hover:bg-slate-400; }
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+    opacity: 0;
+  }
 
-  /* Firefox */
-  .scrollbar-thin { scrollbar-width: thin; scrollbar-color: theme('colors.slate.400') theme('colors.slate.100'); }
+  .animate-scale-in {
+    animation: scale-in 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    opacity: 0;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Support pour line-clamp jusqu'à 5 lignes */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Scrollbar personnalisé (webkit) */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-slate-100 rounded;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded hover:bg-slate-400;
+  }
 
   /* Touch-friendly tap highlight */
-  .tap-highlight-none { -webkit-tap-highlight-color: transparent; }
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
