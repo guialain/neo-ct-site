@@ -29,7 +29,7 @@ const TEAM = [
     summary:
       "Direction de projets : études d’exécution, coordination de chantier ; veille au respect de la qualité, des coûts et des délais.",
     resumeText:
-      "Sur plan comme sur chantier, Ben Alvine GUIRO parle la langue des détails. Il aime quand un croquis devient un calendrier, puis un ouvrage livré, propre et sécurisé. De la préparation d’exécution à la coordination multi-lots, il aligne bureaux d’études, entreprises et contrôle technique avec une exigence constante : zéro surprise à la réception. Sa marque de fabrique : anticiper les risques, fluidifier la communication et tenir le triptyque qualité–coûts–délais. Résultat : des chantiers qui avancent, des clients rassurés et des clés remises avec fierté."
+      "Il bénéficie de 15+ ans d'expérience en France, au Togo et au Ghana dans les métiers des travaux, de la logistique et de la cybersécurité. Il a notamment évolué au sein du Groupe La Poste (France) et piloté, en tant que chef de projet, la rénovation de l'Université de Lomé. Fondateur de BAHIBO & CO, entreprise sœur de NEO CT, qu'il dirige en qualité de Gérant, il assure chez NEO CT la direction des projets de l'étude à la livraison. Manager de terrain, il encadre 15 collaborateurs permanents (ingénieurs & techniciens) et 55+ ouvriers contractuels. Habitué des environnements multi-acteurs (MOA, MOE, BET, entreprises, contrôle technique), il sécurise qualité, coûts et délais grâce à une planification rigoureuse et une gestion proactive des risques."
   },
 
   {

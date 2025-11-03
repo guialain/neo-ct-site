@@ -276,7 +276,7 @@ export default function Header() {
                   </a>
 
                   <a
-                    href="https://www.instagram.com/neoct.ci"
+                    href="https://www.instagram.com/neoctci"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 hover:opacity-90 transition-all duration-300 transform hover:scale-110 active:scale-95"
@@ -288,7 +288,7 @@ export default function Header() {
                   </a>
 
                   <a
-                    href="https://www.tiktok.com/@neoct.ci"
+                    href="https://www.tiktok.com/@neoctci"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group inline-flex items-center justify-center w-12 h-12 rounded-full bg-black hover:bg-gray-800 transition-all duration-300 transform hover:scale-110 active:scale-95"

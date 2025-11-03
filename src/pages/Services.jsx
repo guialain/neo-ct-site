@@ -227,13 +227,6 @@ export default function Services() {
               <p><strong>Périmètre :</strong> contractant général (prix global & forfaitaire), OPC, lots techniques (élec/plomberie/CVC), fourniture & pose, maintenance/SAV.</p>
               <p><strong>Livrables :</strong> planning Gantt, compte-rendu hebdo, registre des points ouverts, schémas unifilaires & plans réseaux, fiches essais/mesures, garanties fabricants.</p>
               <p><strong>Ce que vous gagnez :</strong> décision rapide, traçabilité complète, un seul responsable du résultat, continuité d'activité.</p>
-              <div className="mt-2">
-                <p className="font-medium mb-1">Inclut :</p>
-                <ul className="space-y-1 list-disc list-inside">
-                  <li>Contractant général & coordination des corps</li>
-                  <li>Fourniture & pose (revêtements, menuiseries, sanitaires, appareillages)</li>
-                </ul>
-              </div>
             </div>
           </article>
         </div>
@@ -246,22 +239,28 @@ export default function Services() {
   }`}
 >
   <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 sm:mb-4">
-    Besoins Optionnels
+    Services Optionnels
   </h3>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
     {/* Case 1 */}
-    <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 flex items-center hover:shadow-sm transition-shadow">
-      <p className="text-sm sm:text-base text-slate-700 m-0">Design &amp; plans (APS/APD) en partenariat BE/architectes</p>
+    <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:shadow-sm transition-shadow">
+      <p className="text-sm sm:text-base text-slate-700 m-0">
+        <strong>Pré-projet :</strong> études géotechniques, faisabilité technico-éco, estimation budgétaire, planning cible, analyse de risques, recommandation du mode contractuel.
+      </p>
     </div>
 
     {/* Case 2 */}
-    <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 flex items-center hover:shadow-sm transition-shadow">
-      <p className="text-sm sm:text-base text-slate-700 m-0">Charpente métallique et structures spécifiques</p>
+    <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:shadow-sm transition-shadow">
+      <p className="text-sm sm:text-base text-slate-700 m-0">
+        <strong>Conception :</strong> APS → APD → PRO (architecte + BET structures/VRD/fluide), notices techniques, CCTP, DPGF/BPU, plans d'exécution, dossier d'autorisation/permis.
+      </p>
     </div>
 
     {/* Case 3 */}
-    <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 flex items-center hover:shadow-sm transition-shadow">
-      <p className="text-sm sm:text-base text-slate-700 m-0">Clôtures / Portails – réalisation et automatisme</p>
+    <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:shadow-sm transition-shadow">
+      <p className="text-sm sm:text-base text-slate-700 m-0">
+        <strong>Consultations :</strong> préparation DCE, lancement AO, visites de site, analyse technique &amp; financière, négociations, recommandations, rédaction/visa des marchés, préparation des OS.
+      </p>
     </div>
   </div>
 </div>
@@ -278,7 +277,7 @@ export default function Services() {
   </h3>
 
   {/* Grille responsive */}
-  <ol className="mt-4 grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-5 items-start">
+  <ol className="mt-4 grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-5">
     {[
       { t: "Prise de brief & visite", d: "Compréhension du besoin" },
       { t: "Avant-Projet & chiffrage", d: "Devis clair et délais associés" },
@@ -288,15 +287,15 @@ export default function Services() {
     ].map((step, i) => (
       <li
         key={i}
-        className="h-full rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow flex items-start gap-2 sm:gap-3"
+        className="h-full rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-2 sm:gap-3"
       >
-        <span className="mt-0.5 inline-flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full bg-orange-600 text-white text-xs sm:text-sm font-semibold">
-          {i + 1}
-        </span>
-        <div>
-          <div className="font-medium text-slate-900 text-sm sm:text-base">{step.t}</div>
-          <div className="text-slate-600 text-xs sm:text-sm mt-0.5">{step.d}</div>
+        <div className="flex items-center gap-2 sm:gap-3 lg:gap-1">
+          <span className="shrink-0 inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-orange-600 text-white text-xs sm:text-sm font-semibold">
+            {i + 1}
+          </span>
+          <div className="font-medium text-slate-900 text-sm sm:text-base lg:whitespace-nowrap min-h-[1.5rem] flex items-center">{step.t}</div>
         </div>
+        <div className="text-slate-600 text-xs sm:text-sm pl-[calc(1.75rem+0.5rem)] sm:pl-[calc(2rem+0.75rem)] lg:pl-[calc(2rem+0.25rem)]">{step.d}</div>
       </li>
     ))}
   </ol>

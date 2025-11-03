@@ -49,9 +49,9 @@ const projects = [
     location: "Cocody • 2024",
     media: [
       { type: "image", src: "/real/ahoue/1.jpg" },
-      { type: "image", src: "/real/ahoue/2.jpg" },
+      { type: "image", src: "/real/ahoue/2.JPEG" },
       { type: "image", src: "/real/ahoue/3.jpg" },
-      { type: "image", src: "/real/ahoue/4.jpg" },
+      { type: "image", src: "/real/ahoue/4.JPEG" },
     ],
   },
   {

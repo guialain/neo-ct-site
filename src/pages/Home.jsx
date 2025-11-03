@@ -65,9 +65,9 @@ const PROJECTS = [
     location: "Cocody • 2024",
     media: [
       { type: "image", src: "/real/ahoue/1.jpg" },
-      { type: "image", src: "/real/ahoue/2.jpg" },
+      { type: "image", src: "/real/ahoue/2.JPEG" },
       { type: "image", src: "/real/ahoue/3.jpg" },
-      { type: "image", src: "/real/ahoue/4.jpg" },
+      { type: "image", src: "/real/ahoue/4.JPEG" },
     ],
   },
   {
@@ -140,7 +140,7 @@ const TEAM = [
     summary:
       "Direction de projets : études d'exécution, coordination de chantier ; veille au respect de la qualité, des coûts et des délais.",
     resumeText:
-      "Sur plan comme sur chantier, Ben Alvine GUIRO parle la langue des détails. Il aime quand un croquis devient un calendrier, puis un ouvrage livré, propre et sécurisé. De la préparation d'exécution à la coordination multi-lots, il aligne bureaux d'études, entreprises et contrôle technique avec une exigence constante : zéro surprise à la réception. Sa marque de fabrique : anticiper les risques, fluidifier la communication et tenir le triptyque qualité–coûts–délais. Résultat : des chantiers qui avancent, des clients rassurés et des clés remises avec fierté."
+      "Il bénéficie de 15+ ans d'expérience en France, au Togo et au Ghana dans les métiers des travaux, de la logistique et de la cybersécurité. Il a notamment évolué au sein du Groupe La Poste (France) et piloté, en tant que chef de projet, la rénovation de l'Université de Lomé. Fondateur de BAHIBO & CO, entreprise sœur de NEO CT, qu'il dirige en qualité de Gérant, il assure chez NEO CT la direction des projets de l'étude à la livraison. Manager de terrain, il encadre 15 collaborateurs permanents (ingénieurs & techniciens) et 55+ ouvriers contractuels. Habitué des environnements multi-acteurs (MOA, MOE, BET, entreprises, contrôle technique), il sécurise qualité, coûts et délais grâce à une planification rigoureuse et une gestion proactive des risques."
   },
   {
     id: "guilahou",
@@ -559,112 +559,138 @@ export default function Home() {
 
             {/* Services grid */}
             <div className="grid gap-4 sm:gap-5 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {/* 1) Construction clé en main */}
+              {/* 1) Construction Bâtiment */}
               <article className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
                 servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: '200ms' }}
               >
-                <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
-                  1
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 font-semibold text-sm sm:text-base">
+                    1
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-orange-700">
+                    Construction Bâtiment
+                  </h3>
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-slate-900">
-                  Construction clé en main
-                </h3>
-                <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
-                  <li>Études d'exécution, implantation et terrassement</li>
-                  <li>
-                    <span className="font-medium">Gros œuvre</span> : fondations,
-                    voiles/dalles BA, murs porteurs
-                  </li>
-                  <li>
-                    <span className="font-medium">Second œuvre</span> : maçonnerie,
-                    cloisons, chapes, escaliers
-                  </li>
-                  <li>
-                    <span className="font-medium">Étanchéité & couverture</span> :
-                    toitures, terrasses, évacuations
-                  </li>
-                  <li>
-                    <span className="font-medium">VRD</span> : réseaux, drainage,
-                    voiries/parkings
-                  </li>
-                  <li>Coordination des corps d'état, réception de chantier</li>
-                </ul>
+                <div className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base text-slate-700">
+                  <p><strong>Périmètre :</strong> villas & duplex, immeubles R+2 à R+4, bureaux/showrooms, rénovations lourdes.</p>
+                  <p><strong>Livrables :</strong> métrés détaillés, plans d'exécution, planning jalonné, fiches de contrôle par lot, DOE.</p>
+                  <p><strong>Ce que vous gagnez :</strong> finitions maîtrisées, délais tenus, un interlocuteur unique, livraison sans surprise.</p>
+                  <ul className="mt-2 space-y-1 list-disc list-inside">
+                    <li>Résidentiel (neuf & réhabilitation)</li>
+                    <li>Tertiaire/industriel (aménagements, carrelage technique, cloisons, second œuvre)</li>
+                    <li>Rénovation & mise aux normes</li>
+                  </ul>
+                </div>
               </article>
 
-              {/* 2) Fourniture & Pose */}
+              {/* 2) Génie civil & VRD */}
               <article className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
                 servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: '400ms' }}
               >
-                <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
-                  2
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 font-semibold text-sm sm:text-base">
+                    2
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-orange-700">
+                    Génie civil &amp; VRD
+                  </h3>
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-slate-900">
-                  Fourniture &amp; Pose
-                </h3>
-                <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
-                  <li>Carrelage/sols (intérieur/extérieur), faïence, pierres</li>
-                  <li>Menuiseries (bois, alu, PVC), portes, baies, verrières</li>
-                  <li>
-                    Sanitaires &amp; plomberie (distribution, évacuation,
-                    chauffe-eau)
-                  </li>
-                  <li>Électricité (tableaux, câblage, luminaires, conformité)</li>
-                  <li>Peinture, enduits décoratifs, plafonds, staff</li>
-                </ul>
+                <div className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base text-slate-700">
+                  <p><strong>Périmètre :</strong> dalles & fondations, voiries & parkings, réseaux (EU/EP, électricité), drainage.</p>
+                  <p><strong>Livrables :</strong> notes de calcul, plans de ferraillage, coupes VRD, protocoles HSE, essais béton/sols.</p>
+                  <p><strong>Ce que vous gagnez :</strong> ouvrages durables, gestion des eaux pluviales, accès sécurisés, conformité.</p>
+                  <ul className="mt-2 space-y-1 list-disc list-inside">
+                    <li>Plateformes et ouvrages de structure</li>
+                    <li>VRD complets (terrassements, réseaux, finitions de surface)</li>
+                    <li>Tests & contrôles (planéité, portance, étanchéité)</li>
+                  </ul>
+                </div>
               </article>
 
-              {/* 3) Rénovation | Réhabilitation */}
+              {/* 3) Clé en main & Pilotage */}
               <article className={`rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-500 ${
                 servicesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: '600ms' }}
               >
-                <div className="mb-3 inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 font-semibold text-sm sm:text-base">
-                  3
+                <div className="mb-3 flex items-center gap-3">
+                  <div className="inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-700 font-semibold text-sm sm:text-base">
+                    3
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-orange-700">
+                    Clé en main &amp; Pilotage
+                  </h3>
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-slate-900">
-                  Rénovation | Réhabilitation
-                </h3>
-                <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-700">
-                  <li>Remise à niveau structurelle et technique</li>
-                  <li>Réaménagement intérieur, isolation, confort thermique</li>
-                  <li>Mises aux normes, diagnostics, finitions complètes</li>
-                </ul>
+                <div className="mt-3 sm:mt-4 space-y-2 text-sm sm:text-base text-slate-700">
+                  <p><strong>Périmètre :</strong> contractant général (prix global & forfaitaire), OPC, lots techniques (élec/plomberie/CVC), fourniture & pose, maintenance/SAV.</p>
+                  <p><strong>Livrables :</strong> planning Gantt, compte-rendu hebdo, registre des points ouverts, schémas unifilaires & plans réseaux, fiches essais/mesures, garanties fabricants.</p>
+                  <p><strong>Ce que vous gagnez :</strong> décision rapide, traçabilité complète, un seul responsable du résultat, continuité d'activité.</p>
+                </div>
               </article>
             </div>
 
             {/* Process en 5 étapes */}
             <div className="hidden md:block mt-8 sm:mt-10 md:mt-12">
-              <h3 className="text-base sm:text-lg font-semibold text-slate-900 text-center mb-4">
+              <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 sm:mb-4">
                 Process en 5 étapes
               </h3>
 
-              <ol className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-5 items-start">
+              {/* Grille responsive */}
+              <ol className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-5">
                 {[
-                  "Prise de brief & visite",
-                  "Avant-Projet & chiffrage",
-                  "Lancement & préparation",
-                  "Exécution & contrôle",
-                  "Réception & garanties",
+                  { t: "Prise de brief & visite", d: "Compréhension du besoin" },
+                  { t: "Avant-Projet & chiffrage", d: "Devis clair et délais associés" },
+                  { t: "Lancement & préparation", d: "Planning détaillé, approvisionnement" },
+                  { t: "Exécution & contrôle", d: "Suivi qualité, comptes-rendus" },
+                  { t: "Réception & garanties", d: "Mise en service, levée de réserves" },
                 ].map((step, i) => (
                   <li
                     key={i}
-                    className="flex items-center gap-3 sm:gap-4"
+                    className="h-full rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col gap-2 sm:gap-3"
                   >
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-black text-orange-600 leading-none">
-                      0{i + 1}
-                    </span>
-                    <div className="h-12 sm:h-14 w-px bg-slate-300"></div>
-                    <div className="flex-1">
-                      <div className="font-bold text-slate-900 text-sm sm:text-base leading-snug">{step}</div>
+                    <div className="flex items-center gap-2 sm:gap-3 lg:gap-1">
+                      <span className="shrink-0 inline-flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-orange-600 text-white text-xs sm:text-sm font-semibold">
+                        {i + 1}
+                      </span>
+                      <div className="font-medium text-slate-900 text-sm sm:text-base lg:whitespace-nowrap min-h-[1.5rem] flex items-center">{step.t}</div>
                     </div>
+                    <div className="text-slate-600 text-xs sm:text-sm pl-[calc(1.75rem+0.5rem)] sm:pl-[calc(2rem+0.75rem)] lg:pl-[calc(2rem+0.25rem)]">{step.d}</div>
                   </li>
                 ))}
               </ol>
+            </div>
+
+            {/* Besoins Optionnels */}
+            <div className="hidden md:block mt-8 sm:mt-10 md:mt-12">
+              <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 sm:mb-4">
+                Besoins Optionnels
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {/* Case 1 */}
+                <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:shadow-sm transition-shadow">
+                  <p className="text-sm sm:text-base text-slate-700 m-0">
+                    <strong>Pré-projet :</strong> études géotechniques, faisabilité technico-éco, estimation budgétaire, planning cible, analyse de risques, recommandation du mode contractuel.
+                  </p>
+                </div>
+
+                {/* Case 2 */}
+                <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:shadow-sm transition-shadow">
+                  <p className="text-sm sm:text-base text-slate-700 m-0">
+                    <strong>Conception :</strong> APS → APD → PRO (architecte + BET structures/VRD/fluide), notices techniques, CCTP, DPGF/BPU, plans d'exécution, dossier d'autorisation/permis.
+                  </p>
+                </div>
+
+                {/* Case 3 */}
+                <div className="rounded-xl sm:rounded-2xl border border-slate-200 bg-white p-3 sm:p-4 hover:shadow-sm transition-shadow">
+                  <p className="text-sm sm:text-base text-slate-700 m-0">
+                    <strong>Consultations :</strong> préparation DCE, lancement AO, visites de site, analyse technique &amp; financière, négociations, recommandations, rédaction/visa des marchés, préparation des OS.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
