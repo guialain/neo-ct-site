@@ -28,9 +28,9 @@ const projects = [
   
   {
     id: "villa-perles",
-    title: "VILLA PERLES",
-    subtitle: "Villa haut standing – clé en main",
-    location: "Riviera • 2022",
+    title: "VILLA DUPLEX R+1",
+    subtitle: "Villa Haut Standing + piscine",
+    location: "Cocody II-Plateaux • 2024",
     media: [
       { type: "image", src: "/real/villa-perles/IMG_8143.JPEG" },
       { type: "image", src: "/real/villa-perles/IMG_8152.JPEG" },
@@ -44,9 +44,9 @@ const projects = [
 
 {
     id: "ahoue",
-    title: "AHOUE",
-    subtitle: "Ensemble résidentiel – gros œuvre & finitions",
-    location: "Cocody • 2024",
+    title: "AHOUE-ARTEMIS",
+    subtitle: "Promotion Immobiliere – Gros œuvre & finitions",
+    location: "Cocody Angré • 2024",
     media: [
       { type: "image", src: "/real/ahoue/1.jpg" },
       { type: "image", src: "/real/ahoue/2.JPEG" },
@@ -56,9 +56,9 @@ const projects = [
   },
   {
     id: "bo-reflets",
-    title: "BO REFLETS",
-    subtitle: "Construction Gros Oeuvre de 24 Villas",
-    location: "Cocody • Angre",
+    title: "BO REFLETS-ARTEMIS",
+    subtitle: "24 Villas duplex de 5 pièces",
+    location: "Cocody • Angré",
     media: [
       { type: "image", src: "/real/bo-reflets/1.JPEG" },
       { type: "image", src: "/real/bo-reflets/2.JPEG" },
@@ -69,9 +69,9 @@ const projects = [
   },
   {
     id: "bo-real",
-    title: "BO REAL",
-    subtitle: "Bâtiment tertiaire – R+2",
-    location: "Marcory • 2023",
+    title: "BO REAL-ARTEMIS",
+    subtitle: " 15 Villas duplex de 4 pièces",
+    location: "Cocody Angré • 2025",
     media: [
       { type: "image", src: "/real/bo-real/1.JPEG" },
       { type: "image", src: "/real/bo-real/2.JPEG" },
@@ -82,8 +82,8 @@ const projects = [
   {
     id: "r1-attoban",
     title: "R+1 ATTOBAN",
-    subtitle: "Extension & réhabilitation",
-    location: "Attoban • 2022",
+    subtitle: "Villas duplex R+1",
+    location: "Cocody Attoban • 2025",
     media: [
       { type: "image", src: "/real/r1-attoban/1.JPEG" },
       { type: "image", src: "/real/r1-attoban/2.JPEG" },
@@ -93,9 +93,9 @@ const projects = [
   },
   {
     id: "r3-attessa",
-    title: "R+3 ATTESSA",
-    subtitle: "Immeuble d'habitation – travaux TCE",
-    location: "Angré • 2021",
+    title: "R+3 ATTESSA-ARTEMIS",
+    subtitle: "Immeuble d'habitation",
+    location: "Cocody Angré • 2024",
     media: [
       { type: "image", src: "/real/r3-attessa/1.JPEG" },
       { type: "image", src: "/real/r3-attessa/2.JPEG" },
